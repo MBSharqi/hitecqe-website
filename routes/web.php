@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\ContactMessageController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\PasswordController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\ContactController;
@@ -32,6 +33,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/messages', [ContactMessageController::class, 'index'])->name('messages.index');
         Route::get('/messages/{message}', [ContactMessageController::class, 'show'])->name('messages.show');
         Route::patch('/messages/{message}/read', [ContactMessageController::class, 'markRead'])->name('messages.read');
+        Route::delete('/messages/{message}', [ContactMessageController::class, 'destroy'])->name('messages.destroy');
+
+        Route::get('/password', [PasswordController::class, 'edit'])->name('password.edit');
+        Route::put('/password', [PasswordController::class, 'update'])->name('password.update');
 
         Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
         Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');

@@ -191,6 +191,10 @@ input {
     padding: 1.2rem;
 }
 
+.admin-panel--narrow {
+    max-width: 520px;
+}
+
 .admin-panel__head {
     display: flex;
     justify-content: space-between;
@@ -428,6 +432,19 @@ input {
     background: transparent;
     border: 1px solid var(--line);
     color: var(--ink);
+}
+
+.admin-btn--danger {
+    background: transparent;
+    border: 1px solid rgba(180, 35, 24, 0.25);
+    color: #b42318;
+}
+
+.message-detail__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
 }
 
 .admin-auth-body {

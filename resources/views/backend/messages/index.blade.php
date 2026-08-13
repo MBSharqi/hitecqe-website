@@ -18,6 +18,7 @@
                             <th>Email</th>
                             <th>Subject</th>
                             <th>Received</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,6 +35,14 @@
                                 <td>{{ $message->email }}</td>
                                 <td>{{ $message->subject }}</td>
                                 <td>{{ $message->created_at->format('M j, Y H:i') }}</td>
+                                <td class="admin-table__actions">
+                                    <a href="{{ route('admin.messages.show', $message) }}">View</a>
+                                    <form method="POST" action="{{ route('admin.messages.destroy', $message) }}" onsubmit="return confirm('Delete this message?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

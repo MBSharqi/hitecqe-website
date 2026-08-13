@@ -1,6 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title', 'Services | ' . config('app.name'))
+@section('meta_description', 'Explore Hitecqe services: Laravel web apps, UI design, dynamic websites, maintenance, and technical consulting.')
 
 @section('content')
     <section class="page-hero">

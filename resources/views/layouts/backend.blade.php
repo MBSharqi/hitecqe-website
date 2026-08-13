@@ -20,6 +20,7 @@
                 <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'is-active' : '' }}">Dashboard</a>
                 <a href="{{ route('admin.messages.index') }}" class="{{ request()->routeIs('admin.messages.*') ? 'is-active' : '' }}">Messages</a>
                 <a href="{{ route('admin.posts.index') }}" class="{{ request()->routeIs('admin.posts.*') ? 'is-active' : '' }}">Posts</a>
+                <a href="{{ route('admin.password.edit') }}" class="{{ request()->routeIs('admin.password.*') ? 'is-active' : '' }}">Password</a>
                 <a href="{{ route('home') }}" target="_blank" rel="noopener">View website</a>
             </nav>
             <form method="POST" action="{{ route('admin.logout') }}" class="admin-logout">

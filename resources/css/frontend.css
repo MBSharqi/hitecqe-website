@@ -791,6 +791,13 @@ body.is-home .site-header:not(.is-scrolled) .nav-toggle span {
     max-width: 40rem;
 }
 
+.error-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.75rem;
+}
+
 .section--story {
     background: var(--foam);
 }
@@ -1498,6 +1505,56 @@ body.is-home .site-header:not(.is-scrolled) .nav-toggle span {
 
 .contact-points span {
     color: var(--ink-soft);
+}
+
+.contact-points a {
+    color: var(--signal-deep);
+    font-weight: 600;
+}
+
+.contact-points a:hover {
+    color: var(--signal);
+}
+
+.contact-note {
+    margin-top: 2rem;
+    padding: 1.25rem 1.35rem;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.contact-note__title {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.contact-note__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.65rem;
+}
+
+.contact-note__list li {
+    position: relative;
+    padding-left: 1.2rem;
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+}
+
+.contact-note__list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--signal);
 }
 
 .contact-panel {

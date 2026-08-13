@@ -1,6 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title', 'Blog | ' . config('app.name'))
+@section('meta_description', 'Insights from Hitecqe on product design, Laravel engineering, and shipping software with clarity.')
 
 @section('content')
     <section class="page-hero">

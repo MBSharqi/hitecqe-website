@@ -1,6 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title', config('app.name') . ' — Software that moves business forward')
+@section('meta_description', 'Hitecqe designs and builds custom Laravel web applications, dynamic company websites, and product experiences for startups and growing businesses.')
 
 @section('content')
     <section class="hero" aria-label="Introduction">

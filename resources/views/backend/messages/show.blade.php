@@ -25,7 +25,13 @@
             </div>
             <div>
                 <span>Phone</span>
-                <strong>{{ $message->phone ?: '—' }}</strong>
+                <strong>
+                    @if ($message->phone)
+                        <a href="tel:{{ preg_replace('/\s+/', '', $message->phone) }}">{{ $message->phone }}</a>
+                    @else
+                        —
+                    @endif
+                </strong>
             </div>
             <div>
                 <span>Received</span>
@@ -46,12 +52,20 @@
             <p>{{ $message->message }}</p>
         </div>
 
-        @if ($message->status === 'new')
-            <form method="POST" action="{{ route('admin.messages.read', $message) }}">
+        <div class="message-detail__actions">
+            @if ($message->status === 'new')
+                <form method="POST" action="{{ route('admin.messages.read', $message) }}">
+                    @csrf
+                    @method('PATCH')
+                    <button type="submit" class="admin-btn admin-btn--ghost">Mark as read</button>
+                </form>
+            @endif
+
+            <form method="POST" action="{{ route('admin.messages.destroy', $message) }}" onsubmit="return confirm('Delete this message?')">
                 @csrf
-                @method('PATCH')
-                <button type="submit" class="admin-btn admin-btn--ghost">Mark as read</button>
+                @method('DELETE')
+                <button type="submit" class="admin-btn admin-btn--danger">Delete message</button>
             </form>
-        @endif
+        </div>
     </section>
 @endsection

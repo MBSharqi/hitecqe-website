@@ -1,6 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title', 'Portfolio | ' . config('app.name'))
+@section('meta_description', 'See selected Hitecqe work — product platforms, dashboards, and company websites built for real use.')
 
 @section('content')
     <section class="page-hero">

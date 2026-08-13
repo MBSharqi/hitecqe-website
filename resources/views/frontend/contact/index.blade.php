@@ -1,6 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title', 'Contact | ' . config('app.name'))
+@section('meta_description', 'Contact Hitecqe to discuss your product idea, Laravel app, website rebuild, or upcoming launch.')
 
 @section('content')
     <section class="page-hero">
@@ -26,17 +27,34 @@
                     <ul class="contact-points">
                         <li>
                             <strong>Email</strong>
-                            <span>hello@hitecqe.com</span>
+                            <span><a href="mailto:hello@hitecqe.com">hello@hitecqe.com</a></span>
+                        </li>
+                        <li>
+                            <strong>Phone</strong>
+                            <span><a href="tel:+923001234567">+92 300 123 4567</a></span>
+                        </li>
+                        <li>
+                            <strong>Studio</strong>
+                            <span>Remote-first · Pakistan</span>
+                        </li>
+                        <li>
+                            <strong>Hours</strong>
+                            <span>Mon–Fri, 10:00–18:00 PKT</span>
                         </li>
                         <li>
                             <strong>Response</strong>
                             <span>Usually within 1–2 business days</span>
                         </li>
-                        <li>
-                            <strong>Best for</strong>
-                            <span>New builds, redesigns, and Laravel apps</span>
-                        </li>
                     </ul>
+
+                    <div class="contact-note">
+                        <p class="contact-note__title">Helpful to include</p>
+                        <ul class="contact-note__list">
+                            <li>What you want to build or improve</li>
+                            <li>Your target launch or deadline</li>
+                            <li>Any existing product, design, or tech stack</li>
+                        </ul>
+                    </div>
                 </aside>
 
                 <div class="contact-panel" data-reveal>

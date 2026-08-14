@@ -22,6 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/frontend.css', 'resources/js/frontend.js'])
+    @stack('styles')
 </head>
 <body class="{{ request()->routeIs('home') ? 'is-home' : 'is-inner' }}">
     <div class="site-wrapper">
@@ -41,7 +42,7 @@
                     <a href="{{ route('services') }}" class="{{ request()->routeIs('services') ? 'is-active' : '' }}">Services</a>
                     <a href="{{ route('portfolio') }}" class="{{ request()->routeIs('portfolio') ? 'is-active' : '' }}">Portfolio</a>
                     <a href="{{ route('blog') }}" class="{{ request()->routeIs('blog') ? 'is-active' : '' }}">Blog</a>
-                    <a href="{{ route('contact') }}" class="site-nav__cta {{ request()->routeIs('contact') ? 'is-active' : '' }}">Contact</a>
+                    <a href="{{ route('contact') }}" class="site-nav__cta {{ request()->routeIs('contact') ? 'is-active' : '' }}">Get in touch</a>
                 </nav>
             </div>
         </header>
@@ -74,19 +75,35 @@
                         <img src="{{ asset('images/logo/hitecqe-mark.svg') }}" alt="" width="40" height="40">
                         <div>
                             <strong>{{ config('app.name') }}</strong>
-                            <p>Software crafted for clarity, speed, and growth.</p>
+                            <p>Custom software, product design, and digital platforms for companies that need clarity, quality, and dependable delivery.</p>
                         </div>
                     </div>
-                    <div class="site-footer__links">
-                        <a href="{{ route('about') }}">About</a>
-                        <a href="{{ route('services') }}">Services</a>
-                        <a href="{{ route('portfolio') }}">Portfolio</a>
-                        <a href="{{ route('contact') }}">Contact</a>
+                    <div class="site-footer__col">
+                        <p class="site-footer__label">Company</p>
+                        <nav class="site-footer__links" aria-label="Footer company">
+                            <a href="{{ route('about') }}">About</a>
+                            <a href="{{ route('services') }}">Services</a>
+                            <a href="{{ route('portfolio') }}">Portfolio</a>
+                            <a href="{{ route('blog') }}">Blog</a>
+                        </nav>
+                    </div>
+                    <div class="site-footer__col">
+                        <p class="site-footer__label">Contact</p>
+                        <ul class="site-footer__contact">
+                            <li><a href="mailto:hello@hitecqe.com">hello@hitecqe.com</a></li>
+                            <li><a href="tel:+94772067857">+94 772 067 857</a></li>
+                            <li>Colombo, Sri Lanka</li>
+                        </ul>
+                        <a href="{{ route('contact') }}" class="site-footer__cta">Start a project</a>
                     </div>
                 </div>
-                <p class="site-footer__copy">&copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
+                <div class="site-footer__bottom">
+                    <p class="site-footer__copy">&copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
+                    <p class="site-footer__note">Software engineering studio · Mon–Fri, 10:00–18:00 SLST</p>
+                </div>
             </div>
         </footer>
     </div>
+    @stack('scripts')
 </body>
 </html>

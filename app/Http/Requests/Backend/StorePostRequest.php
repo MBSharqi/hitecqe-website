@@ -12,6 +12,13 @@ class StorePostRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation(): void
+    {
+        if ($this->published_at === '') {
+            $this->merge(['published_at' => null]);
+        }
+    }
+
     public function rules(): array
     {
         return [

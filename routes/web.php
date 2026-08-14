@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\ContactMessageController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\PasswordController;
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\SiteImageController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -18,12 +19,12 @@ Route::get('/portfolio', [PageController::class, 'portfolio'])->name('portfolio'
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/contact', [ContactController::class, 'store'])->middleware('throttle:5,1')->name('contact.store');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-        Route::post('/login', [AuthController::class, 'login'])->name('login.store');
+        Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('login.store');
     });
 
     Route::middleware('auth')->group(function () {
@@ -34,6 +35,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/messages/{message}', [ContactMessageController::class, 'show'])->name('messages.show');
         Route::patch('/messages/{message}/read', [ContactMessageController::class, 'markRead'])->name('messages.read');
         Route::delete('/messages/{message}', [ContactMessageController::class, 'destroy'])->name('messages.destroy');
+
+        Route::get('/images', [SiteImageController::class, 'index'])->name('images.index');
+        Route::put('/images/{slot}', [SiteImageController::class, 'update'])->where('slot', '[A-Za-z0-9._-]+')->name('images.update');
+        Route::delete('/images/{slot}', [SiteImageController::class, 'destroy'])->where('slot', '[A-Za-z0-9._-]+')->name('images.destroy');
 
         Route::get('/password', [PasswordController::class, 'edit'])->name('password.edit');
         Route::put('/password', [PasswordController::class, 'update'])->name('password.update');

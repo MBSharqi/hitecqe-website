@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Post extends Model
@@ -43,7 +42,7 @@ class Post extends Model
             }
 
             if (str_starts_with($this->cover_image, 'posts/')) {
-                return Storage::disk('public')->url($this->cover_image);
+                return asset('storage/'.$this->cover_image);
             }
 
             return asset($this->cover_image);
@@ -57,7 +56,7 @@ class Post extends Model
 
     public static function makeSlug(string $title, ?int $ignoreId = null): string
     {
-        $base = Str::slug($title);
+        $base = Str::slug($title) ?: 'post';
         $slug = $base;
         $counter = 2;
 

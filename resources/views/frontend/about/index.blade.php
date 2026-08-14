@@ -19,8 +19,9 @@
             <div class="story">
                 <div class="story__media" data-reveal>
                     <img
-                        src="{{ asset('images/about/studio.jpg') }}"
+                        src="{{ site_image_url('about.studio') }}"
                         alt="Hitecqe team collaborating on product work"
+                        class="{{ site_image_has('about.studio') ? '' : 'is-placeholder' }}"
                         width="1800"
                         height="1200"
                         loading="lazy"
@@ -83,8 +84,9 @@
                 </div>
                 <div class="focus__media" data-reveal>
                     <img
-                        src="{{ asset('images/about/focus.jpg') }}"
+                        src="{{ site_image_url('about.focus') }}"
                         alt="Focused workspace used for product design and development"
+                        class="{{ site_image_has('about.focus') ? '' : 'is-placeholder' }}"
                         width="1600"
                         height="1066"
                         loading="lazy"

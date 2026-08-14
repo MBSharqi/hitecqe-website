@@ -33,8 +33,9 @@
                 </div>
                 <div class="service-detail__media" data-reveal>
                     <img
-                        src="{{ asset('images/services/engineering.jpg') }}"
+                        src="{{ site_image_url('services.engineering') }}"
                         alt="Software engineering workspace for web application development"
+                        class="{{ site_image_has('services.engineering') ? '' : 'is-placeholder' }}"
                         width="1800"
                         height="1200"
                         loading="lazy"
@@ -63,8 +64,9 @@
                 </div>
                 <div class="service-detail__media" data-reveal>
                     <img
-                        src="{{ asset('images/services/design.jpg') }}"
+                        src="{{ site_image_url('services.design') }}"
                         alt="Interface design process for digital products"
+                        class="{{ site_image_has('services.design') ? '' : 'is-placeholder' }}"
                         width="1600"
                         height="1066"
                         loading="lazy"

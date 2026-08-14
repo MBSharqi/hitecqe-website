@@ -252,6 +252,24 @@ body.is-home .site-header:not(.is-scrolled) .nav-toggle span {
     will-change: transform;
 }
 
+.hero__media img.is-placeholder {
+    object-fit: contain;
+    transform: none;
+    animation: none;
+    background: #e8efed;
+}
+
+.craft__media img.is-placeholder,
+.selected__frame img.is-placeholder,
+.story__media img.is-placeholder,
+.focus__media img.is-placeholder,
+.service-detail__media img.is-placeholder,
+.featured__media img.is-placeholder,
+.work__media img.is-placeholder {
+    object-fit: contain;
+    background: #e8efed;
+}
+
 .hero__veil {
     position: absolute;
     inset: 0;

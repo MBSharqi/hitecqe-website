@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', config('app.name'))</title>
     <meta name="description" content="@yield('meta_description', 'Hitecqe builds custom Laravel software, dynamic websites, and product experiences for startups and growing companies.')">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="@yield('meta_robots', 'index, follow')">
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
     <link rel="icon" href="{{ asset('images/logo/hitecqe-mark.svg') }}" type="image/svg+xml">
@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/frontend.css', 'resources/js/frontend.js'])
 </head>
-<body class="@yield('body_class') {{ request()->routeIs('home') ? 'is-home' : 'is-inner' }}">
+<body class="{{ request()->routeIs('home') ? 'is-home' : 'is-inner' }}">
     <div class="site-wrapper">
         <header class="site-header" data-site-header>
             <div class="container-xl site-header__inner">

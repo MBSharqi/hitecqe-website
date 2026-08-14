@@ -19,8 +19,9 @@
             <article class="featured" data-reveal>
                 <div class="featured__media">
                     <img
-                        src="{{ asset('images/portfolio/dashboard.jpg') }}"
+                        src="{{ site_image_url('portfolio.featured') }}"
                         alt="Analytics dashboard interface for a growth platform"
+                        class="{{ site_image_has('portfolio.featured') ? '' : 'is-placeholder' }}"
                         width="1600"
                         height="1066"
                         loading="eager"
@@ -58,8 +59,9 @@
                 <article class="work" data-reveal>
                     <div class="work__media">
                         <img
-                            src="{{ asset('images/portfolio/mobile.jpg') }}"
+                            src="{{ site_image_url('portfolio.work_1') }}"
                             alt="Mobile product experience for a customer platform"
+                            class="{{ site_image_has('portfolio.work_1') ? '' : 'is-placeholder' }}"
                             width="1600"
                             height="1066"
                             loading="lazy"
@@ -76,8 +78,9 @@
                 <article class="work" data-reveal>
                     <div class="work__media">
                         <img
-                            src="{{ asset('images/portfolio/platform.jpg') }}"
+                            src="{{ site_image_url('portfolio.work_2') }}"
                             alt="Engineering workspace representing a custom platform build"
+                            class="{{ site_image_has('portfolio.work_2') ? '' : 'is-placeholder' }}"
                             width="1600"
                             height="1066"
                             loading="lazy"
@@ -94,8 +97,9 @@
                 <article class="work" data-reveal>
                     <div class="work__media">
                         <img
-                            src="{{ asset('images/portfolio/workspace.jpg') }}"
+                            src="{{ site_image_url('portfolio.work_3') }}"
                             alt="Workspace representing a company website and brand platform"
+                            class="{{ site_image_has('portfolio.work_3') ? '' : 'is-placeholder' }}"
                             width="1600"
                             height="1066"
                             loading="lazy"

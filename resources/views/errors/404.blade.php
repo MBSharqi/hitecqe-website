@@ -2,6 +2,7 @@
 
 @section('title', 'Page not found | ' . config('app.name'))
 @section('meta_description', 'The page you requested could not be found on Hitecqe.')
+@section('meta_robots', 'noindex, follow')
 
 @section('content')
     <section class="page-hero">

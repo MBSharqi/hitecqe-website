@@ -2,9 +2,7 @@
 
 @section('title', $post->title . ' | ' . config('app.name'))
 @section('meta_description', $post->excerpt)
-@if ($post->cover_url)
-@section('meta_image', $post->cover_url)
-@endif
+@section('meta_image', $post->cover_url ?: asset('images/logo/hitecqe-mark.svg'))
 
 @section('content')
     <article class="post-page">

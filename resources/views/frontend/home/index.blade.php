@@ -7,8 +7,9 @@
     <section class="hero" aria-label="Introduction">
         <div class="hero__media" data-hero-media>
             <img
-                src="{{ asset('images/hero/workspace.jpg') }}"
+                src="{{ site_image_url('home.hero') }}"
                 alt="Modern workspace where Hitecqe designs and builds software products"
+                class="{{ site_image_has('home.hero') ? '' : 'is-placeholder' }}"
                 width="2400"
                 height="1600"
                 fetchpriority="high"
@@ -106,8 +107,9 @@
             <div class="craft">
                 <div class="craft__media" data-reveal>
                     <img
-                        src="{{ asset('images/hero/craft.jpg') }}"
+                        src="{{ site_image_url('home.craft') }}"
                         alt="Close-up of software engineering work in progress"
+                        class="{{ site_image_has('home.craft') ? '' : 'is-placeholder' }}"
                         width="1800"
                         height="1200"
                         loading="lazy"
@@ -151,8 +153,9 @@
                 </div>
                 <div class="selected__frame">
                     <img
-                        src="{{ asset('images/portfolio/dashboard.jpg') }}"
+                        src="{{ site_image_url('home.selected') }}"
                         alt="Product analytics dashboard interface"
+                        class="{{ site_image_has('home.selected') ? '' : 'is-placeholder' }}"
                         width="1600"
                         height="1066"
                         loading="lazy"

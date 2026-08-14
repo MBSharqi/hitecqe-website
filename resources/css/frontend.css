@@ -10,7 +10,7 @@
     --signal-deep: #0d6f69;
     --deep: #032826;
     --mist: #7f9794;
-    --font-display: "Syne", sans-serif;
+    --font-display: "Plus Jakarta Sans", sans-serif;
     --font-body: "Figtree", sans-serif;
     --header-h: 4.75rem;
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -134,9 +134,9 @@ body.is-home .site-header:not(.is-scrolled) .nav-toggle span {
 
 .brand__name {
     font-family: var(--font-display);
-    font-weight: 800;
+    font-weight: 700;
     font-size: 1.22rem;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.022em;
     line-height: 1;
 }
 
@@ -291,20 +291,20 @@ body.is-home .site-header:not(.is-scrolled) .nav-toggle span {
     margin: 0 0 1.1rem;
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(3.2rem, 9vw, 6.4rem);
-    letter-spacing: -0.055em;
-    line-height: 0.92;
+    font-size: clamp(3rem, 8vw, 5.8rem);
+    letter-spacing: -0.038em;
+    line-height: 0.96;
     text-shadow: 0 10px 40px rgba(0, 0, 0, 0.22);
 }
 
 .hero__headline {
     margin: 0 0 1.05rem;
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(1.55rem, 3.2vw, 2.4rem);
-    letter-spacing: -0.035em;
-    line-height: 1.12;
-    max-width: 15ch;
+    font-weight: 600;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    letter-spacing: -0.022em;
+    line-height: 1.16;
+    max-width: 18ch;
 }
 
 .hero__lead {
@@ -435,9 +435,9 @@ body.is-home .site-header:not(.is-scrolled) .nav-toggle span {
     margin: 0 0 0.95rem;
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(1.9rem, 3.6vw, 3rem);
-    letter-spacing: -0.04em;
-    line-height: 1.08;
+    font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+    letter-spacing: -0.022em;
+    line-height: 1.12;
 }
 
 .section__text,
@@ -796,10 +796,10 @@ body.is-home .site-header:not(.is-scrolled) .nav-toggle span {
 .page-hero__title {
     margin: 0 0 1rem;
     font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    letter-spacing: -0.045em;
-    line-height: 1.05;
+    font-weight: 700;
+    font-size: clamp(2rem, 4.2vw, 3.35rem);
+    letter-spacing: -0.024em;
+    line-height: 1.14;
 }
 
 .page-hero__lead {
@@ -857,9 +857,9 @@ body.is-home .site-header:not(.is-scrolled) .nav-toggle span {
     margin: 0 0 0.95rem;
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(1.9rem, 3.4vw, 2.8rem);
-    letter-spacing: -0.04em;
-    line-height: 1.08;
+    font-size: clamp(1.85rem, 3.2vw, 2.65rem);
+    letter-spacing: -0.022em;
+    line-height: 1.12;
 }
 
 .story__content p,
@@ -1395,9 +1395,10 @@ body.is-home .site-header:not(.is-scrolled) .nav-toggle span {
 .blog-item__content h2 {
     margin: 0 0 0.75rem;
     font-family: var(--font-display);
-    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-    letter-spacing: -0.03em;
-    line-height: 1.15;
+    font-weight: 600;
+    font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+    letter-spacing: -0.018em;
+    line-height: 1.18;
 }
 
 .blog-item__content h2 a:hover {

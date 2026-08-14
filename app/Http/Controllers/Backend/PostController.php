@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\StorePostRequest;
 use App\Http\Requests\Backend\UpdatePostRequest;
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -105,7 +106,9 @@ class PostController extends Controller
         }
 
         if ($publishedAt) {
-            return $publishedAt;
+            $date = Carbon::parse($publishedAt, config('app.timezone'));
+
+            return $date->isFuture() ? now() : $date;
         }
 
         return $existing ?: now();

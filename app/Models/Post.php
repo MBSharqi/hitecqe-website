@@ -34,6 +34,20 @@ class Post extends Model
             ->where('published_at', '<=', now());
     }
 
+    public function isScheduled(): bool
+    {
+        return $this->status === 'published'
+            && $this->published_at
+            && $this->published_at->isFuture();
+    }
+
+    public function isPubliclyVisible(): bool
+    {
+        return $this->status === 'published'
+            && $this->published_at
+            && $this->published_at->lte(now());
+    }
+
     protected function coverUrl(): Attribute
     {
         return Attribute::get(function (): ?string {

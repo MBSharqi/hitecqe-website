@@ -60,6 +60,7 @@
 
     <div class="admin-field">
         <label for="published_at">Publish date <span>(optional)</span></label>
+        <p class="admin-help">Leave empty to publish immediately. Future dates publish right away as well.</p>
         <input
             id="published_at"
             type="datetime-local"

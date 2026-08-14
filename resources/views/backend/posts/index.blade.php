@@ -28,16 +28,20 @@
                         @foreach ($posts as $post)
                             <tr>
                                 <td>
-                                    <span class="admin-badge {{ $post->status === 'published' ? 'admin-badge--new' : '' }}">
-                                        {{ ucfirst($post->status) }}
-                                    </span>
+                                    @if ($post->isScheduled())
+                                        <span class="admin-badge">Scheduled</span>
+                                    @else
+                                        <span class="admin-badge {{ $post->status === 'published' ? 'admin-badge--new' : '' }}">
+                                            {{ ucfirst($post->status) }}
+                                        </span>
+                                    @endif
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.posts.edit', $post) }}">{{ $post->title }}</a>
                                 </td>
                                 <td>{{ $post->published_at?->format('M j, Y') ?: '—' }}</td>
                                 <td class="admin-table__actions">
-                                    @if ($post->status === 'published')
+                                    @if ($post->isPubliclyVisible())
                                         <a href="{{ route('blog.show', $post) }}" target="_blank" rel="noopener">View</a>
                                     @endif
                                     <a href="{{ route('admin.posts.edit', $post) }}">Edit</a>

@@ -20,7 +20,7 @@
     <meta name="twitter:description" content="@yield('meta_description', 'Hitecqe builds custom Laravel software, dynamic websites, and product experiences for startups and growing companies.')">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/frontend.css', 'resources/js/frontend.js'])
 </head>
 <body class="{{ request()->routeIs('home') ? 'is-home' : 'is-inner' }}">

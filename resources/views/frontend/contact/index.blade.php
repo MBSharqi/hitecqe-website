@@ -31,15 +31,15 @@
                         </li>
                         <li>
                             <strong>Phone</strong>
-                            <span><a href="tel:+923001234567">+92 300 123 4567</a></span>
+                            <span><a href="tel:+94772067857">+94 772 067 857</a></span>
                         </li>
                         <li>
                             <strong>Studio</strong>
-                            <span>Remote-first · Pakistan</span>
+                            <span>Colombo, Sri Lanka</span>
                         </li>
                         <li>
                             <strong>Hours</strong>
-                            <span>Mon–Fri, 10:00–18:00 PKT</span>
+                            <span>Mon–Fri, 10:00–18:00 SLST</span>
                         </li>
                         <li>
                             <strong>Response</strong>

@@ -20,12 +20,7 @@ class BlogController extends Controller
 
     public function show(Post $post): View
     {
-        abort_unless(
-            $post->status === 'published'
-                && $post->published_at
-                && $post->published_at->lte(now()),
-            404
-        );
+        abort_unless($post->isPubliclyVisible(), 404);
 
         return view('frontend.blog.show', compact('post'));
     }

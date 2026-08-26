@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', config('app.name'))</title>
-    <meta name="description" content="@yield('meta_description', 'Hitecqe builds custom Laravel software, dynamic websites, and product experiences for startups and growing companies.')">
+    <meta name="description" content="@yield('meta_description', config('app.name') . ' — ' . config('brand.tagline') . '. Custom Laravel software, dynamic websites, and product experiences for startups and growing companies.')">
     <meta name="robots" content="@yield('meta_robots', 'index, follow')">
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
@@ -12,12 +12,12 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ config('app.name') }}">
     <meta property="og:title" content="@yield('title', config('app.name'))">
-    <meta property="og:description" content="@yield('meta_description', 'Hitecqe builds custom Laravel software, dynamic websites, and product experiences for startups and growing companies.')">
+    <meta property="og:description" content="@yield('meta_description', config('app.name') . ' — ' . config('brand.tagline') . '. Custom Laravel software, dynamic websites, and product experiences for startups and growing companies.')">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="@yield('meta_image', asset('images/logo/hitecqe-mark.svg'))">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('title', config('app.name'))">
-    <meta name="twitter:description" content="@yield('meta_description', 'Hitecqe builds custom Laravel software, dynamic websites, and product experiences for startups and growing companies.')">
+    <meta name="twitter:description" content="@yield('meta_description', config('app.name') . ' — ' . config('brand.tagline') . '. Custom Laravel software, dynamic websites, and product experiences for startups and growing companies.')">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -75,6 +75,7 @@
                         <img src="{{ asset('images/logo/hitecqe-mark.svg') }}" alt="" width="40" height="40">
                         <div>
                             <strong>{{ config('app.name') }}</strong>
+                            <p class="site-footer__tagline">{{ config('brand.tagline') }}</p>
                             <p>Custom software, product design, and digital platforms for companies that need clarity, quality, and dependable delivery.</p>
                         </div>
                     </div>
@@ -99,7 +100,7 @@
                 </div>
                 <div class="site-footer__bottom">
                     <p class="site-footer__copy">&copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
-                    <p class="site-footer__note">Software engineering studio · Mon–Fri, 10:00–18:00 SLST</p>
+                    <p class="site-footer__note">{{ config('brand.tagline') }} · Mon–Fri, 10:00–18:00 SLST</p>
                 </div>
             </div>
         </footer>

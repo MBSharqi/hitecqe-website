@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', config('app.name') . ' — Software that moves business forward')
-@section('meta_description', 'Hitecqe designs and builds custom Laravel web applications, dynamic company websites, and product experiences for startups and growing businesses.')
+@section('title', config('app.name') . ' — ' . config('brand.tagline'))
+@section('meta_description', config('app.name') . ' — ' . config('brand.tagline') . '. We design and build Laravel web applications, product interfaces, and company websites for startups and growing businesses.')
 
 @push('styles')
     @vite('resources/css/home.css')
@@ -13,7 +13,7 @@
 
 @section('content')
     <div class="home-page">
-        <section class="hero hero--corporate" aria-label="Introduction">
+        <section class="hero hero--corporate" aria-label="Introduction" data-hero-slider>
             <div class="hero__backdrop" aria-hidden="true">
                 <span class="hero__orb hero__orb--one"></span>
                 <span class="hero__orb hero__orb--two"></span>
@@ -23,23 +23,51 @@
                 <div class="hero__copy">
                     <p class="hero__eyebrow" data-hero-item>
                         <span class="hero__eyebrow-dot"></span>
-                        Software engineering studio
+                        {{ config('app.name') }}
                     </p>
-                    <h1 class="hero__title" data-hero-item>
-                        Software that moves <span class="hero__accent">business forward.</span>
-                    </h1>
-                    <p class="hero__lead" data-hero-item>
-                        We design and engineer digital products with precision — clear systems, sharp interfaces, and lasting performance for startups and growing companies.
-                    </p>
+                    <p class="hero__tagline" data-hero-item>{{ config('brand.tagline') }}</p>
+                    <div class="hero__slides" data-hero-slides>
+                        <div class="hero__slide is-active" data-hero-slide>
+                            <h1 class="hero__title">
+                                Software that moves <span class="hero__accent">business forward.</span>
+                            </h1>
+                            <p class="hero__lead">
+                                We design and engineer digital products with precision — clear systems, sharp interfaces, and lasting performance for startups and growing companies.
+                            </p>
+                        </div>
+                        <div class="hero__slide" data-hero-slide>
+                            <h1 class="hero__title">
+                                From first sketch to <span class="hero__accent">production release.</span>
+                            </h1>
+                            <p class="hero__lead">
+                                Strategy, UI design, and Laravel engineering in one focused team — so your product ships with clarity and stays ready to grow.
+                            </p>
+                        </div>
+                        <div class="hero__slide" data-hero-slide>
+                            <h1 class="hero__title">
+                                Built clear. <span class="hero__accent">Delivered right.</span>
+                            </h1>
+                            <p class="hero__lead">
+                                Calm interfaces, maintainable architecture, and transparent delivery — software your team can trust after launch.
+                            </p>
+                        </div>
+                    </div>
                     <div class="hero__actions" data-hero-item>
                         <a href="{{ route('contact') }}" class="btn-signal btn-signal--shine">Start a project</a>
                         <a href="{{ route('portfolio') }}" class="btn-quiet">View our work</a>
                     </div>
-                    <ul class="hero__trust" data-hero-item>
-                        <li>Laravel &amp; modern web platforms</li>
-                        <li>Colombo, Sri Lanka · SLST</li>
-                        <li>Design through production delivery</li>
-                    </ul>
+                    <div class="hero__slider-nav" data-hero-item>
+                        <div class="hero__dots" role="tablist" aria-label="Hero slides">
+                            <button type="button" class="hero__dot is-active" data-hero-dot aria-label="Slide 1"></button>
+                            <button type="button" class="hero__dot" data-hero-dot aria-label="Slide 2"></button>
+                            <button type="button" class="hero__dot" data-hero-dot aria-label="Slide 3"></button>
+                        </div>
+                        <ul class="hero__trust">
+                            <li>Laravel &amp; modern web platforms</li>
+                            <li>Colombo, Sri Lanka · SLST</li>
+                            <li>Design through production delivery</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="hero__visual-wrap" data-hero-item>
                     <div class="hero__visual-glow" aria-hidden="true"></div>
@@ -47,15 +75,80 @@
                         <div class="hero__visual-chrome" aria-hidden="true">
                             <span></span><span></span><span></span>
                         </div>
-                        <img
-                            src="{{ site_image_url('home.hero') }}"
-                            alt="Modern workspace where Hitecqe designs and builds software products"
-                            class="{{ site_image_has('home.hero') ? '' : 'is-placeholder' }}"
-                            width="2400"
-                            height="1600"
-                            fetchpriority="high"
-                        >
+                        <div class="hero__visual-slides" data-hero-images>
+                            <img
+                                src="{{ site_image_url('home.hero') }}"
+                                alt="Modern workspace where Hitecqe Solutions designs and builds software products"
+                                class="is-active {{ site_image_has('home.hero') ? '' : 'is-placeholder' }}"
+                                width="2400"
+                                height="1600"
+                                fetchpriority="high"
+                                data-hero-image
+                            >
+                            <img
+                                src="{{ site_image_url('home.craft') }}"
+                                alt="Software engineering work in progress at Hitecqe Solutions"
+                                class="{{ site_image_has('home.craft') ? '' : 'is-placeholder' }}"
+                                width="1800"
+                                height="1200"
+                                loading="lazy"
+                                data-hero-image
+                            >
+                            <img
+                                src="{{ site_image_url('home.selected') }}"
+                                alt="Product interface crafted by Hitecqe Solutions"
+                                class="{{ site_image_has('home.selected') ? '' : 'is-placeholder' }}"
+                                width="1600"
+                                height="1066"
+                                loading="lazy"
+                                data-hero-image
+                            >
+                        </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="marquee" aria-label="Brand highlights">
+            <div class="marquee__track" aria-hidden="true">
+                @for ($i = 0; $i < 2; $i++)
+                    <div class="marquee__group">
+                        <span>{{ config('app.name') }}</span>
+                        <span class="marquee__sep">·</span>
+                        <span>{{ config('brand.tagline') }}</span>
+                        <span class="marquee__sep">·</span>
+                        <span>Laravel Engineering</span>
+                        <span class="marquee__sep">·</span>
+                        <span>Product Design</span>
+                        <span class="marquee__sep">·</span>
+                        <span>Clear Delivery</span>
+                        <span class="marquee__sep">·</span>
+                        <span>Colombo, Sri Lanka</span>
+                        <span class="marquee__sep">·</span>
+                    </div>
+                @endfor
+            </div>
+        </section>
+
+        <section class="stats-bar" aria-label="Company metrics" data-counters>
+            <div class="container-xl">
+                <div class="stats-bar__grid" data-stagger="100">
+                    <article class="stat-card" data-stagger-item>
+                        <p class="stat-card__value"><span data-count="40" data-suffix="+">0</span></p>
+                        <p class="stat-card__label">Focused delivery cycles completed</p>
+                    </article>
+                    <article class="stat-card" data-stagger-item>
+                        <p class="stat-card__value"><span data-count="100" data-suffix="%">0</span></p>
+                        <p class="stat-card__label">Transparent scope and progress updates</p>
+                    </article>
+                    <article class="stat-card" data-stagger-item>
+                        <p class="stat-card__value"><span data-count="3" data-suffix="">0</span></p>
+                        <p class="stat-card__label">Core stages — Discover, Design, Deliver</p>
+                    </article>
+                    <article class="stat-card" data-stagger-item>
+                        <p class="stat-card__value"><span data-count="24" data-suffix="/7">0</span></p>
+                        <p class="stat-card__label">Systems built for real-world use</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -93,7 +186,7 @@
                     <p class="eyebrow">What we do</p>
                     <h2>Build the product. Shape the experience. Own the outcome.</h2>
                     <p class="section__text">
-                        Hitecqe partners with startups and growing companies to turn ambitious ideas into reliable software — from first sketch to production release.
+                        {{ config('app.name') }} partners with startups and growing companies to turn ambitious ideas into reliable software — from first sketch to production release.
                     </p>
                 </div>
                 <div class="purpose-rail" data-stagger="140">
@@ -152,6 +245,52 @@
                         <span class="service-row__meta">Support · Feature velocity</span>
                         <span class="service-row__arrow" aria-hidden="true">→</span>
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--advantage" id="why-hitecqe">
+            <div class="container-xl">
+                <div class="section__intro section__intro--split" data-reveal>
+                    <div>
+                        <p class="eyebrow">Why Hitecqe</p>
+                        <h2>Client-focused delivery for lasting software.</h2>
+                    </div>
+                    <p class="section__text">
+                        We combine clear planning, careful craft, and dependable engineering — so every engagement feels structured, transparent, and built for real outcomes.
+                    </p>
+                </div>
+                <div class="advantage-grid" data-stagger="80">
+                    <article class="advantage-card" data-stagger-item>
+                        <span class="advantage-card__num">01</span>
+                        <h3>Understand your goals</h3>
+                        <p>We start with your product job, users, and constraints — then align scope to what matters most.</p>
+                    </article>
+                    <article class="advantage-card" data-stagger-item>
+                        <span class="advantage-card__num">02</span>
+                        <h3>Design before heavy build</h3>
+                        <p>Flows and interfaces are refined early, so engineering time goes into the right decisions.</p>
+                    </article>
+                    <article class="advantage-card" data-stagger-item>
+                        <span class="advantage-card__num">03</span>
+                        <h3>Ship in focused cycles</h3>
+                        <p>You see progress early, with practical milestones and production-ready releases.</p>
+                    </article>
+                    <article class="advantage-card" data-stagger-item>
+                        <span class="advantage-card__num">04</span>
+                        <h3>Transparent communication</h3>
+                        <p>Clear updates, honest timelines, and no hidden scope — partnership built on trust.</p>
+                    </article>
+                    <article class="advantage-card" data-stagger-item>
+                        <span class="advantage-card__num">05</span>
+                        <h3>Maintainable architecture</h3>
+                        <p>Laravel systems structured to stay readable, secure, and ready for future features.</p>
+                    </article>
+                    <article class="advantage-card" data-stagger-item>
+                        <span class="advantage-card__num">06</span>
+                        <h3>Support after launch</h3>
+                        <p>Iteration, maintenance, and growth planning after your product is live.</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -222,6 +361,45 @@
             </div>
         </section>
 
+        <section class="section section--testimonials">
+            <div class="container-xl">
+                <div class="section__intro" data-reveal>
+                    <p class="eyebrow">Testimonials</p>
+                    <h2>What partners value in working with us.</h2>
+                    <p class="section__text">
+                        Sample voices that reflect how we aim to work — replace these with your real client feedback as projects go live.
+                    </p>
+                </div>
+                <div class="testimonials-grid" data-stagger="120" data-testimonial-slider>
+                    <blockquote class="testimonial-card is-active" data-stagger-item data-testimonial>
+                        <p>“Hitecqe Solutions brought clarity to a messy brief and delivered a Laravel platform our team could actually maintain. Communication stayed clear from kickoff to launch.”</p>
+                        <footer>
+                            <strong>Amina Fernando</strong>
+                            <span>Founder, Northline Analytics</span>
+                        </footer>
+                    </blockquote>
+                    <blockquote class="testimonial-card" data-stagger-item data-testimonial>
+                        <p>“They treated design and engineering as one process. The result felt polished, fast, and ready for real users — without the usual handoff gaps.”</p>
+                        <footer>
+                            <strong>Ravi Perera</strong>
+                            <span>Product Lead, Orbit Hub</span>
+                        </footer>
+                    </blockquote>
+                    <blockquote class="testimonial-card" data-stagger-item data-testimonial>
+                        <p>“Transparent timelines, careful craft, and a partner mindset. We knew what was shipping each week — and why.”</p>
+                        <footer>
+                            <strong>Sasha Wijesinghe</strong>
+                            <span>Operations Director, Forge Suite</span>
+                        </footer>
+                    </blockquote>
+                </div>
+                <div class="testimonials-nav" data-reveal>
+                    <button type="button" class="testimonials-nav__btn" data-testimonial-prev aria-label="Previous testimonial">←</button>
+                    <button type="button" class="testimonials-nav__btn" data-testimonial-next aria-label="Next testimonial">→</button>
+                </div>
+            </div>
+        </section>
+
         <section class="section section--cta">
             <div class="container-xl">
                 <div class="cta-band cta-band--home" data-reveal>
@@ -229,7 +407,7 @@
                     <div class="cta-band__copy">
                         <p class="eyebrow">Next step</p>
                         <h2>Ready to build something that lasts?</h2>
-                        <p>Tell us about your product idea or upcoming launch. We’ll map the smartest path forward.</p>
+                        <p>{{ config('brand.tagline') }}. Tell us about your product idea or upcoming launch — we’ll map a clear path forward.</p>
                     </div>
                     <div class="cta-band__actions">
                         <a href="{{ route('contact') }}" class="btn-signal btn-signal--shine">Talk to Hitecqe</a>

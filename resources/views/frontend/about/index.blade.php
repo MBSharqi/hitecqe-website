@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title', 'About | ' . config('app.name'))
-@section('meta_description', 'Learn about Hitecqe — a software studio focused on clarity, craft, and reliable Laravel product engineering.')
+@section('meta_description', 'Learn about Hitecqe Solutions — a software studio focused on clarity, craft, and reliable Laravel product engineering. ' . config('brand.tagline') . '.')
 
 @section('content')
     <section class="page-hero">

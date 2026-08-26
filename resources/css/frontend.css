@@ -814,8 +814,15 @@ body.is-home .site-header:not(.is-scrolled) .nav-toggle span {
     color: #fff;
     font-family: var(--font-display);
     font-size: 1.15rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
     letter-spacing: -0.02em;
+}
+
+.site-footer__tagline {
+    margin: 0 0 0.55rem;
+    color: #5eead4;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 .site-footer__brand p {
@@ -1835,6 +1842,8 @@ body.is-home .site-header:not(.is-scrolled) .nav-toggle span {
     .section__intro--split,
     .hero__grid,
     .trust-bar__grid,
+    .stats-bar__grid,
+    .advantage-grid,
     .site-footer__grid,
     .craft,
     .selected,

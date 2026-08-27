@@ -27,23 +27,23 @@
                     <ul class="contact-points">
                         <li>
                             <strong>Email</strong>
-                            <span><a href="mailto:hello@hitecqe.com">hello@hitecqe.com</a></span>
+                            <span><a href="mailto:{{ setting('email') }}">{{ setting('email') }}</a></span>
                         </li>
                         <li>
                             <strong>Phone</strong>
-                            <span><a href="tel:+94772067857">+94 772 067 857</a></span>
+                            <span><a href="tel:{{ setting('phone_link') }}">{{ setting('phone') }}</a></span>
                         </li>
                         <li>
                             <strong>Studio</strong>
-                            <span>Colombo, Sri Lanka</span>
+                            <span>{{ setting('address') }}</span>
                         </li>
                         <li>
                             <strong>Hours</strong>
-                            <span>Mon–Fri, 10:00–18:00 SLST</span>
+                            <span>{{ setting('hours') }}</span>
                         </li>
                         <li>
                             <strong>Response</strong>
-                            <span>Usually within 1–2 business days</span>
+                            <span>{{ setting('response_note') }}</span>
                         </li>
                     </ul>
 

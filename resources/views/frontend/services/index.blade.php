@@ -4,13 +4,20 @@
 @section('meta_description', 'Explore Hitecqe services: Laravel web apps, UI design, dynamic websites, maintenance, and technical consulting.')
 
 @section('content')
+    @php
+        $hero = page_content('services', 'hero');
+        $engineering = page_content('services', 'engineering');
+        $design = page_content('services', 'design');
+        $offerings = page_content('services', 'offerings');
+        $process = page_content('services', 'process');
+        $cta = page_content('services', 'cta');
+    @endphp
+
     <section class="page-hero">
         <div class="container-xl page-hero__inner">
-            <p class="eyebrow" data-reveal>Services</p>
-            <h1 class="page-hero__title" data-reveal>Capabilities tuned for real shipping.</h1>
-            <p class="page-hero__lead" data-reveal>
-                From product design to Laravel engineering, Hitecqe helps you plan clearly, build cleanly, and launch with confidence.
-            </p>
+            <p class="eyebrow" data-reveal>{{ $hero['eyebrow'] ?? 'Services' }}</p>
+            <h1 class="page-hero__title" data-reveal>{{ $hero['title'] ?? '' }}</h1>
+            <p class="page-hero__lead" data-reveal>{{ $hero['lead'] ?? '' }}</p>
         </div>
     </section>
 
@@ -19,16 +26,13 @@
             <div class="service-detail">
                 <div class="service-detail__content" data-reveal>
                     <span class="service-detail__index">01</span>
-                    <p class="eyebrow">Engineering</p>
-                    <h2>Web application development</h2>
-                    <p>
-                        Custom platforms and business applications built on modern Laravel architecture — secure, maintainable, and ready to grow with your company.
-                    </p>
+                    <p class="eyebrow">{{ $engineering['eyebrow'] ?? 'Engineering' }}</p>
+                    <h2>{{ $engineering['title'] ?? '' }}</h2>
+                    <p>{{ $engineering['lead'] ?? '' }}</p>
                     <ul class="service-detail__list">
-                        <li>Custom web apps and internal tools</li>
-                        <li>APIs, authentication, and role systems</li>
-                        <li>MySQL data modeling and performance</li>
-                        <li>Integrations with third-party services</li>
+                        @foreach (($engineering['points'] ?? []) as $point)
+                            <li>{{ $point }}</li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="service-detail__media" data-reveal>
@@ -50,16 +54,13 @@
             <div class="service-detail service-detail--reverse">
                 <div class="service-detail__content" data-reveal>
                     <span class="service-detail__index">02</span>
-                    <p class="eyebrow">Design</p>
-                    <h2>Product &amp; UI design</h2>
-                    <p>
-                        Distinctive interfaces and product flows that feel intentional — so your brand looks sharp and your users always know what to do next.
-                    </p>
+                    <p class="eyebrow">{{ $design['eyebrow'] ?? 'Design' }}</p>
+                    <h2>{{ $design['title'] ?? '' }}</h2>
+                    <p>{{ $design['lead'] ?? '' }}</p>
                     <ul class="service-detail__list">
-                        <li>UX flows and information architecture</li>
-                        <li>Visual systems and interface design</li>
-                        <li>Responsive layouts for every screen</li>
-                        <li>Design-to-development handoff</li>
+                        @foreach (($design['points'] ?? []) as $point)
+                            <li>{{ $point }}</li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="service-detail__media" data-reveal>
@@ -79,25 +80,17 @@
     <section class="section section--offerings">
         <div class="container-xl">
             <div class="offerings-head" data-reveal>
-                <p class="eyebrow">Also available</p>
-                <h2>More ways we help teams ship.</h2>
+                <p class="eyebrow">{{ $offerings['eyebrow'] ?? 'Also available' }}</p>
+                <h2>{{ $offerings['title'] ?? '' }}</h2>
             </div>
             <div class="offerings-rail">
-                <article class="offering" data-reveal>
-                    <span class="offering__index">03</span>
-                    <h3>Dynamic company websites</h3>
-                    <p>High-performance marketing sites with clean structure, strong branding, and room to grow into dynamic content later.</p>
-                </article>
-                <article class="offering" data-reveal>
-                    <span class="offering__index">04</span>
-                    <h3>Maintenance &amp; iteration</h3>
-                    <p>Ongoing support, feature updates, and improvements so your product keeps moving after launch.</p>
-                </article>
-                <article class="offering" data-reveal>
-                    <span class="offering__index">05</span>
-                    <h3>Technical consulting</h3>
-                    <p>Architecture reviews, stack decisions, and practical guidance when you need a clear technical direction.</p>
-                </article>
+                @foreach (($offerings['items'] ?? []) as $index => $item)
+                    <article class="offering" data-reveal>
+                        <span class="offering__index">{{ str_pad((string) ($index + 3), 2, '0', STR_PAD_LEFT) }}</span>
+                        <h3>{{ $item['title'] ?? '' }}</h3>
+                        <p>{{ $item['body'] ?? '' }}</p>
+                    </article>
+                @endforeach
             </div>
         </div>
     </section>
@@ -106,27 +99,17 @@
         <div class="container-xl">
             <div class="process" data-reveal>
                 <div class="process__intro">
-                    <p class="eyebrow">Engagement</p>
-                    <h2>A simple path from idea to release.</h2>
-                    <p>We keep the process light and visible, so progress feels steady and decisions stay easy.</p>
+                    <p class="eyebrow">{{ $process['eyebrow'] ?? 'Engagement' }}</p>
+                    <h2>{{ $process['title'] ?? '' }}</h2>
+                    <p>{{ $process['lead'] ?? '' }}</p>
                 </div>
                 <ol class="process__steps">
-                    <li>
-                        <strong>Scope</strong>
-                        <span>We align on goals, users, timeline, and what success looks like.</span>
-                    </li>
-                    <li>
-                        <strong>Design</strong>
-                        <span>Flows and interfaces are shaped before heavy engineering begins.</span>
-                    </li>
-                    <li>
-                        <strong>Build</strong>
-                        <span>We develop in focused cycles with clear demos and feedback points.</span>
-                    </li>
-                    <li>
-                        <strong>Launch</strong>
-                        <span>We ship cleanly, then support iteration as your product grows.</span>
-                    </li>
+                    @foreach (($process['steps'] ?? []) as $step)
+                        <li>
+                            <strong>{{ $step['title'] ?? '' }}</strong>
+                            <span>{{ $step['body'] ?? '' }}</span>
+                        </li>
+                    @endforeach
                 </ol>
             </div>
         </div>
@@ -136,9 +119,9 @@
         <div class="container-xl">
             <div class="cta-band" data-reveal>
                 <div class="cta-band__copy">
-                    <p class="eyebrow">Start a project</p>
-                    <h2>Tell us what you want to build.</h2>
-                    <p>Share your product idea, rebuild need, or upcoming launch — we’ll recommend the smartest next step.</p>
+                    <p class="eyebrow">{{ $cta['eyebrow'] ?? 'Start a project' }}</p>
+                    <h2>{{ $cta['title'] ?? '' }}</h2>
+                    <p>{{ $cta['lead'] ?? '' }}</p>
                 </div>
                 <div class="cta-band__actions">
                     <a href="{{ route('contact') }}" class="btn-signal">Talk to Hitecqe</a>

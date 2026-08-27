@@ -12,6 +12,11 @@
 @endpush
 
 @section('content')
+    @php
+        $homeHero = page_content('home', 'hero');
+        $homeStats = page_content('home', 'stats');
+        $homeAdvantages = page_content('home', 'advantages');
+    @endphp
     <div class="home-page">
         <section class="hero hero--corporate" aria-label="Introduction" data-hero-slider>
             <div class="hero__backdrop" aria-hidden="true">
@@ -27,30 +32,17 @@
                     </p>
                     <p class="hero__tagline" data-hero-item>{{ config('brand.tagline') }}</p>
                     <div class="hero__slides" data-hero-slides>
-                        <div class="hero__slide is-active" data-hero-slide>
-                            <h1 class="hero__title">
-                                Software that moves <span class="hero__accent">business forward.</span>
-                            </h1>
-                            <p class="hero__lead">
-                                We design and engineer digital products with precision — clear systems, sharp interfaces, and lasting performance for startups and growing companies.
-                            </p>
-                        </div>
-                        <div class="hero__slide" data-hero-slide>
-                            <h1 class="hero__title">
-                                From first sketch to <span class="hero__accent">production release.</span>
-                            </h1>
-                            <p class="hero__lead">
-                                Strategy, UI design, and Laravel engineering in one focused team — so your product ships with clarity and stays ready to grow.
-                            </p>
-                        </div>
-                        <div class="hero__slide" data-hero-slide>
-                            <h1 class="hero__title">
-                                Built clear. <span class="hero__accent">Delivered right.</span>
-                            </h1>
-                            <p class="hero__lead">
-                                Calm interfaces, maintainable architecture, and transparent delivery — software your team can trust after launch.
-                            </p>
-                        </div>
+                        @foreach (($homeHero['slides'] ?? []) as $index => $slide)
+                            <div class="hero__slide {{ $index === 0 ? 'is-active' : '' }}" data-hero-slide>
+                                <h1 class="hero__title">
+                                    {{ $slide['title'] ?? '' }}
+                                    @if (! empty($slide['accent']))
+                                        <span class="hero__accent">{{ $slide['accent'] }}</span>
+                                    @endif
+                                </h1>
+                                <p class="hero__lead">{{ $slide['lead'] ?? '' }}</p>
+                            </div>
+                        @endforeach
                     </div>
                     <div class="hero__actions" data-hero-item>
                         <a href="{{ route('contact') }}" class="btn-signal btn-signal--shine">Start a project</a>
@@ -58,14 +50,14 @@
                     </div>
                     <div class="hero__slider-nav" data-hero-item>
                         <div class="hero__dots" role="tablist" aria-label="Hero slides">
-                            <button type="button" class="hero__dot is-active" data-hero-dot aria-label="Slide 1"></button>
-                            <button type="button" class="hero__dot" data-hero-dot aria-label="Slide 2"></button>
-                            <button type="button" class="hero__dot" data-hero-dot aria-label="Slide 3"></button>
+                            @foreach (($homeHero['slides'] ?? []) as $index => $slide)
+                                <button type="button" class="hero__dot {{ $index === 0 ? 'is-active' : '' }}" data-hero-dot aria-label="Slide {{ $index + 1 }}"></button>
+                            @endforeach
                         </div>
                         <ul class="hero__trust">
-                            <li>Laravel &amp; modern web platforms</li>
-                            <li>Colombo, Sri Lanka · SLST</li>
-                            <li>Design through production delivery</li>
+                            @foreach (($homeHero['trust'] ?? []) as $bullet)
+                                <li>{{ $bullet }}</li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -123,7 +115,7 @@
                         <span class="marquee__sep">·</span>
                         <span>Clear Delivery</span>
                         <span class="marquee__sep">·</span>
-                        <span>Colombo, Sri Lanka</span>
+                        <span>{{ setting('address') ?: 'Colombo, Sri Lanka' }}</span>
                         <span class="marquee__sep">·</span>
                     </div>
                 @endfor
@@ -133,22 +125,14 @@
         <section class="stats-bar" aria-label="Company metrics" data-counters>
             <div class="container-xl">
                 <div class="stats-bar__grid" data-stagger="100">
-                    <article class="stat-card" data-stagger-item>
-                        <p class="stat-card__value"><span data-count="40" data-suffix="+">0</span></p>
-                        <p class="stat-card__label">Focused delivery cycles completed</p>
-                    </article>
-                    <article class="stat-card" data-stagger-item>
-                        <p class="stat-card__value"><span data-count="100" data-suffix="%">0</span></p>
-                        <p class="stat-card__label">Transparent scope and progress updates</p>
-                    </article>
-                    <article class="stat-card" data-stagger-item>
-                        <p class="stat-card__value"><span data-count="3" data-suffix="">0</span></p>
-                        <p class="stat-card__label">Core stages — Discover, Design, Deliver</p>
-                    </article>
-                    <article class="stat-card" data-stagger-item>
-                        <p class="stat-card__value"><span data-count="24" data-suffix="/7">0</span></p>
-                        <p class="stat-card__label">Systems built for real-world use</p>
-                    </article>
+                    @foreach ($homeStats as $stat)
+                        <article class="stat-card" data-stagger-item>
+                            <p class="stat-card__value">
+                                <span data-count="{{ (int) ($stat['value'] ?? 0) }}" data-suffix="{{ $stat['suffix'] ?? '' }}">0</span>
+                            </p>
+                            <p class="stat-card__label">{{ $stat['label'] ?? '' }}</p>
+                        </article>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -253,44 +237,19 @@
             <div class="container-xl">
                 <div class="section__intro section__intro--split" data-reveal>
                     <div>
-                        <p class="eyebrow">Why Hitecqe</p>
-                        <h2>Client-focused delivery for lasting software.</h2>
+                        <p class="eyebrow">{{ $homeAdvantages['eyebrow'] ?? 'Why Hitecqe' }}</p>
+                        <h2>{{ $homeAdvantages['title'] ?? '' }}</h2>
                     </div>
-                    <p class="section__text">
-                        We combine clear planning, careful craft, and dependable engineering — so every engagement feels structured, transparent, and built for real outcomes.
-                    </p>
+                    <p class="section__text">{{ $homeAdvantages['lead'] ?? '' }}</p>
                 </div>
                 <div class="advantage-grid" data-stagger="80">
-                    <article class="advantage-card" data-stagger-item>
-                        <span class="advantage-card__num">01</span>
-                        <h3>Understand your goals</h3>
-                        <p>We start with your product job, users, and constraints — then align scope to what matters most.</p>
-                    </article>
-                    <article class="advantage-card" data-stagger-item>
-                        <span class="advantage-card__num">02</span>
-                        <h3>Design before heavy build</h3>
-                        <p>Flows and interfaces are refined early, so engineering time goes into the right decisions.</p>
-                    </article>
-                    <article class="advantage-card" data-stagger-item>
-                        <span class="advantage-card__num">03</span>
-                        <h3>Ship in focused cycles</h3>
-                        <p>You see progress early, with practical milestones and production-ready releases.</p>
-                    </article>
-                    <article class="advantage-card" data-stagger-item>
-                        <span class="advantage-card__num">04</span>
-                        <h3>Transparent communication</h3>
-                        <p>Clear updates, honest timelines, and no hidden scope — partnership built on trust.</p>
-                    </article>
-                    <article class="advantage-card" data-stagger-item>
-                        <span class="advantage-card__num">05</span>
-                        <h3>Maintainable architecture</h3>
-                        <p>Laravel systems structured to stay readable, secure, and ready for future features.</p>
-                    </article>
-                    <article class="advantage-card" data-stagger-item>
-                        <span class="advantage-card__num">06</span>
-                        <h3>Support after launch</h3>
-                        <p>Iteration, maintenance, and growth planning after your product is live.</p>
-                    </article>
+                    @foreach (($homeAdvantages['cards'] ?? []) as $index => $card)
+                        <article class="advantage-card" data-stagger-item>
+                            <span class="advantage-card__num">{{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}</span>
+                            <h3>{{ $card['title'] ?? '' }}</h3>
+                            <p>{{ $card['body'] ?? '' }}</p>
+                        </article>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -367,36 +326,33 @@
                     <p class="eyebrow">Testimonials</p>
                     <h2>What partners value in working with us.</h2>
                     <p class="section__text">
-                        Sample voices that reflect how we aim to work — replace these with your real client feedback as projects go live.
+                        Real feedback from teams we’ve helped design, build, and ship software with clarity.
                     </p>
                 </div>
-                <div class="testimonials-grid" data-stagger="120" data-testimonial-slider>
-                    <blockquote class="testimonial-card is-active" data-stagger-item data-testimonial>
-                        <p>“Hitecqe Solutions brought clarity to a messy brief and delivered a Laravel platform our team could actually maintain. Communication stayed clear from kickoff to launch.”</p>
-                        <footer>
-                            <strong>Amina Fernando</strong>
-                            <span>Founder, Northline Analytics</span>
-                        </footer>
-                    </blockquote>
-                    <blockquote class="testimonial-card" data-stagger-item data-testimonial>
-                        <p>“They treated design and engineering as one process. The result felt polished, fast, and ready for real users — without the usual handoff gaps.”</p>
-                        <footer>
-                            <strong>Ravi Perera</strong>
-                            <span>Product Lead, Orbit Hub</span>
-                        </footer>
-                    </blockquote>
-                    <blockquote class="testimonial-card" data-stagger-item data-testimonial>
-                        <p>“Transparent timelines, careful craft, and a partner mindset. We knew what was shipping each week — and why.”</p>
-                        <footer>
-                            <strong>Sasha Wijesinghe</strong>
-                            <span>Operations Director, Forge Suite</span>
-                        </footer>
-                    </blockquote>
-                </div>
-                <div class="testimonials-nav" data-reveal>
-                    <button type="button" class="testimonials-nav__btn" data-testimonial-prev aria-label="Previous testimonial">←</button>
-                    <button type="button" class="testimonials-nav__btn" data-testimonial-next aria-label="Next testimonial">→</button>
-                </div>
+
+                @if ($testimonials->isEmpty())
+                    <p class="blog-empty" data-reveal>Client stories will appear here as projects go live.</p>
+                @else
+                    <div class="testimonials-grid" data-stagger="120" data-testimonial-slider>
+                        @foreach ($testimonials as $index => $testimonial)
+                            <blockquote class="testimonial-card {{ $index === 0 ? 'is-active' : '' }}" data-stagger-item data-testimonial>
+                                <p>“{{ $testimonial->quote }}”</p>
+                                <footer>
+                                    <strong>{{ $testimonial->author_name }}</strong>
+                                    @if ($testimonial->author_role)
+                                        <span>{{ $testimonial->author_role }}</span>
+                                    @endif
+                                </footer>
+                            </blockquote>
+                        @endforeach
+                    </div>
+                    @if ($testimonials->count() > 1)
+                        <div class="testimonials-nav" data-reveal>
+                            <button type="button" class="testimonials-nav__btn" data-testimonial-prev aria-label="Previous testimonial">←</button>
+                            <button type="button" class="testimonials-nav__btn" data-testimonial-next aria-label="Next testimonial">→</button>
+                        </div>
+                    @endif
+                @endif
             </div>
         </section>
 

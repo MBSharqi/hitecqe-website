@@ -8,52 +8,47 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class Post extends Model
+class Project extends Model
 {
     protected $fillable = [
         'title',
         'slug',
-        'excerpt',
-        'body',
+        'description',
+        'tags',
+        'focus',
+        'outcome',
         'cover_image',
+        'is_featured',
+        'sort_order',
         'status',
-        'published_at',
     ];
 
     protected function casts(): array
     {
         return [
-            'published_at' => 'datetime',
+            'is_featured' => 'boolean',
+            'sort_order' => 'integer',
         ];
     }
 
     public function scopePublished(Builder $query): Builder
     {
+        return $query->where('status', 'published');
+    }
+
+    public function scopeOrdered(Builder $query): Builder
+    {
         return $query
-            ->where('status', 'published')
-            ->whereNotNull('published_at')
-            ->where('published_at', '<=', now());
-    }
-
-    public function isScheduled(): bool
-    {
-        return $this->status === 'published'
-            && $this->published_at
-            && $this->published_at->isFuture();
-    }
-
-    public function isPubliclyVisible(): bool
-    {
-        return $this->status === 'published'
-            && $this->published_at
-            && $this->published_at->lte(now());
+            ->orderByDesc('is_featured')
+            ->orderBy('sort_order')
+            ->orderBy('title');
     }
 
     protected function coverUrl(): Attribute
     {
         return Attribute::get(function (): string {
             if ($this->hasCoverImage()) {
-                if (str_starts_with((string) $this->cover_image, 'posts/')) {
+                if (str_starts_with((string) $this->cover_image, 'projects/')) {
                     return asset('storage/'.$this->cover_image);
                 }
 
@@ -70,7 +65,7 @@ class Post extends Model
             return false;
         }
 
-        if (str_starts_with($this->cover_image, 'posts/')) {
+        if (str_starts_with($this->cover_image, 'projects/')) {
             return Storage::disk('public')->exists($this->cover_image);
         }
 
@@ -79,12 +74,12 @@ class Post extends Model
 
     public function isStoredCover(): bool
     {
-        return is_string($this->cover_image) && str_starts_with($this->cover_image, 'posts/');
+        return is_string($this->cover_image) && str_starts_with($this->cover_image, 'projects/');
     }
 
     public static function makeSlug(string $title, ?int $ignoreId = null): string
     {
-        $base = Str::slug($title) ?: 'post';
+        $base = Str::slug($title) ?: 'project';
         $slug = $base;
         $counter = 2;
 

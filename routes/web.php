@@ -3,9 +3,13 @@
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\ContactMessageController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\PageContentController;
 use App\Http\Controllers\Backend\PasswordController;
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\ProjectController;
 use App\Http\Controllers\Backend\SiteImageController;
+use App\Http\Controllers\Backend\SiteSettingController;
+use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -43,11 +47,31 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/password', [PasswordController::class, 'edit'])->name('password.edit');
         Route::put('/password', [PasswordController::class, 'update'])->name('password.update');
 
+        Route::get('/settings', [SiteSettingController::class, 'edit'])->name('settings.edit');
+        Route::put('/settings', [SiteSettingController::class, 'update'])->name('settings.update');
+
+        Route::get('/content/{page}', [PageContentController::class, 'edit'])->where('page', 'home|about|services')->name('content.edit');
+        Route::put('/content/{page}', [PageContentController::class, 'update'])->where('page', 'home|about|services')->name('content.update');
+
         Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
         Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
         Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
         Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
         Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
         Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+        Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+        Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
+        Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
+        Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+        Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
+        Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+
+        Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
+        Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create');
+        Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
+        Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit');
+        Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('testimonials.update');
+        Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');
     });
 });

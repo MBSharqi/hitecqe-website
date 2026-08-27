@@ -91,16 +91,16 @@
                     <div class="site-footer__col">
                         <p class="site-footer__label">Contact</p>
                         <ul class="site-footer__contact">
-                            <li><a href="mailto:hello@hitecqe.com">hello@hitecqe.com</a></li>
-                            <li><a href="tel:+94772067857">+94 772 067 857</a></li>
-                            <li>Colombo, Sri Lanka</li>
+                            <li><a href="mailto:{{ setting('email') }}">{{ setting('email') }}</a></li>
+                            <li><a href="tel:{{ setting('phone_link') }}">{{ setting('phone') }}</a></li>
+                            <li>{{ setting('address') }}</li>
                         </ul>
                         <a href="{{ route('contact') }}" class="site-footer__cta">Start a project</a>
                     </div>
                 </div>
                 <div class="site-footer__bottom">
                     <p class="site-footer__copy">&copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
-                    <p class="site-footer__note">{{ config('brand.tagline') }} · Mon–Fri, 10:00–18:00 SLST</p>
+                    <p class="site-footer__note">{{ config('brand.tagline') }} · {{ setting('hours') }}</p>
                 </div>
             </div>
         </footer>

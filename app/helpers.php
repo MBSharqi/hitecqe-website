@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\PageContent;
 use App\Models\SiteImage;
+use App\Models\SiteSetting;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,6 +24,11 @@ function site_image_url(string $slot): string
         return asset('storage/'.site_images()->get($slot)->path);
     }
 
+    return placeholder_image_url();
+}
+
+function placeholder_image_url(): string
+{
     return asset((string) config('site_images.placeholder'));
 }
 
@@ -36,4 +43,25 @@ function site_image_slots(): array
     }
 
     return $slots;
+}
+
+function site_settings(): array
+{
+    return once(fn () => SiteSetting::current()->resolved());
+}
+
+function setting(string $key, ?string $default = null): ?string
+{
+    $value = site_settings()[$key] ?? $default;
+
+    return is_string($value) ? $value : $default;
+}
+
+function page_content(string $page, ?string $section = null): array
+{
+    if ($section === null) {
+        return PageContent::page($page);
+    }
+
+    return PageContent::getSection($page, $section);
 }

@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Mail\ContactMessageReceived;
 use App\Models\ContactMessage;
 use App\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class PublicPagesTest extends TestCase
@@ -30,6 +32,8 @@ class PublicPagesTest extends TestCase
 
     public function test_contact_form_stores_a_message(): void
     {
+        Mail::fake();
+
         $this->post('/contact', [
             'name' => 'Amina Khan',
             'email' => 'amina@example.com',
@@ -46,6 +50,11 @@ class PublicPagesTest extends TestCase
         ]);
 
         $this->assertSame(1, ContactMessage::count());
+
+        Mail::assertSent(ContactMessageReceived::class, function (ContactMessageReceived $mail) {
+            return $mail->contactMessage->email === 'amina@example.com'
+                && $mail->hasTo('hello@hitecqe.com');
+        });
     }
 
     public function test_published_blog_post_is_visible(): void

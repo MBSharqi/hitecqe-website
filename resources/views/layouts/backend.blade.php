@@ -23,7 +23,13 @@
                 <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'is-active' : '' }}">Dashboard</a>
                 <a href="{{ route('admin.messages.index') }}" class="{{ request()->routeIs('admin.messages.*') ? 'is-active' : '' }}">Messages</a>
                 <a href="{{ route('admin.posts.index') }}" class="{{ request()->routeIs('admin.posts.*') ? 'is-active' : '' }}">Posts</a>
+                <a href="{{ route('admin.projects.index') }}" class="{{ request()->routeIs('admin.projects.*') ? 'is-active' : '' }}">Projects</a>
+                <a href="{{ route('admin.testimonials.index') }}" class="{{ request()->routeIs('admin.testimonials.*') ? 'is-active' : '' }}">Testimonials</a>
+                <a href="{{ route('admin.content.edit', 'home') }}" class="{{ request()->routeIs('admin.content.*') && request()->route('page') === 'home' ? 'is-active' : '' }}">Home content</a>
+                <a href="{{ route('admin.content.edit', 'about') }}" class="{{ request()->routeIs('admin.content.*') && request()->route('page') === 'about' ? 'is-active' : '' }}">About content</a>
+                <a href="{{ route('admin.content.edit', 'services') }}" class="{{ request()->routeIs('admin.content.*') && request()->route('page') === 'services' ? 'is-active' : '' }}">Services content</a>
                 <a href="{{ route('admin.images.index') }}" class="{{ request()->routeIs('admin.images.*') ? 'is-active' : '' }}">Page images</a>
+                <a href="{{ route('admin.settings.edit') }}" class="{{ request()->routeIs('admin.settings.*') ? 'is-active' : '' }}">Site settings</a>
                 <a href="{{ route('admin.password.edit') }}" class="{{ request()->routeIs('admin.password.*') ? 'is-active' : '' }}">Password</a>
                 <a href="{{ route('home') }}" target="_blank" rel="noopener">View website</a>
             </nav>

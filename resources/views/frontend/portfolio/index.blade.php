@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title', 'Portfolio | ' . config('app.name'))
-@section('meta_description', 'See selected Hitecqe work — product platforms, dashboards, and company websites built for real use.')
+@section('meta_description', 'See selected Hitecqe Solutions work — product platforms, dashboards, and company websites built for real use.')
 
 @section('content')
     <section class="page-hero">
@@ -9,110 +9,88 @@
             <p class="eyebrow" data-reveal>Portfolio</p>
             <h1 class="page-hero__title" data-reveal>Selected work built for real use.</h1>
             <p class="page-hero__lead" data-reveal>
-                A look at the kinds of products and platforms Hitecqe designs and engineers — calm interfaces, solid systems, and outcomes that hold up in production.
+                A look at the kinds of products and platforms {{ config('app.name') }} designs and engineers — calm interfaces, solid systems, and outcomes that hold up in production.
             </p>
         </div>
     </section>
 
-    <section class="section section--featured">
-        <div class="container-xl">
-            <article class="featured" data-reveal>
-                <div class="featured__media">
-                    <img
-                        src="{{ site_image_url('portfolio.featured') }}"
-                        alt="Analytics dashboard interface for a growth platform"
-                        class="{{ site_image_has('portfolio.featured') ? '' : 'is-placeholder' }}"
-                        width="1600"
-                        height="1066"
-                        loading="eager"
-                    >
-                </div>
-                <div class="featured__content">
-                    <p class="eyebrow">Featured project</p>
-                    <h2>Northline Analytics</h2>
-                    <p>
-                        A performance dashboard for a growing SaaS team — clearer reporting, faster decisions, and an interface that stays calm under daily use.
-                    </p>
-                    <dl class="featured__meta">
-                        <div>
-                            <dt>Focus</dt>
-                            <dd>Product design · Laravel app</dd>
-                        </div>
-                        <div>
-                            <dt>Outcome</dt>
-                            <dd>Faster insight workflows for operators</dd>
-                        </div>
-                    </dl>
-                </div>
-            </article>
-        </div>
-    </section>
+    @if ($featured)
+        <section class="section section--featured">
+            <div class="container-xl">
+                <article class="featured" data-reveal>
+                    <div class="featured__media">
+                        <img
+                            src="{{ $featured->cover_url }}"
+                            alt="{{ $featured->title }}"
+                            class="{{ $featured->hasCoverImage() ? '' : 'is-placeholder' }}"
+                            width="1600"
+                            height="1066"
+                            loading="eager"
+                        >
+                    </div>
+                    <div class="featured__content">
+                        <p class="eyebrow">Featured project</p>
+                        <h2>{{ $featured->title }}</h2>
+                        <p>{{ $featured->description }}</p>
+                        @if ($featured->focus || $featured->outcome)
+                            <dl class="featured__meta">
+                                @if ($featured->focus)
+                                    <div>
+                                        <dt>Focus</dt>
+                                        <dd>{{ $featured->focus }}</dd>
+                                    </div>
+                                @endif
+                                @if ($featured->outcome)
+                                    <div>
+                                        <dt>Outcome</dt>
+                                        <dd>{{ $featured->outcome }}</dd>
+                                    </div>
+                                @endif
+                            </dl>
+                        @elseif ($featured->tags)
+                            <p class="work__tags">{{ $featured->tags }}</p>
+                        @endif
+                    </div>
+                </article>
+            </div>
+        </section>
+    @endif
 
     <section class="section section--works">
         <div class="container-xl">
             <div class="works-head" data-reveal>
-                <p class="eyebrow">More work</p>
+                <p class="eyebrow">{{ $featured ? 'More work' : 'Selected work' }}</p>
                 <h2>Systems shaped for clarity and growth.</h2>
             </div>
 
-            <div class="works-list">
-                <article class="work" data-reveal>
-                    <div class="work__media">
-                        <img
-                            src="{{ site_image_url('portfolio.work_1') }}"
-                            alt="Mobile product experience for a customer platform"
-                            class="{{ site_image_has('portfolio.work_1') ? '' : 'is-placeholder' }}"
-                            width="1600"
-                            height="1066"
-                            loading="lazy"
-                        >
-                    </div>
-                    <div class="work__content">
-                        <span class="work__index">02</span>
-                        <h3>Orbit Customer Hub</h3>
-                        <p>A responsive customer portal with clean account flows, support touchpoints, and a visual system built for trust.</p>
-                        <p class="work__tags">UI design · Web app · Responsive</p>
-                    </div>
-                </article>
-
-                <article class="work" data-reveal>
-                    <div class="work__media">
-                        <img
-                            src="{{ site_image_url('portfolio.work_2') }}"
-                            alt="Engineering workspace representing a custom platform build"
-                            class="{{ site_image_has('portfolio.work_2') ? '' : 'is-placeholder' }}"
-                            width="1600"
-                            height="1066"
-                            loading="lazy"
-                        >
-                    </div>
-                    <div class="work__content">
-                        <span class="work__index">03</span>
-                        <h3>Forge Operations Suite</h3>
-                        <p>Internal tooling for operations teams — structured workflows, role-based access, and a foundation ready for future modules.</p>
-                        <p class="work__tags">Laravel · MySQL · Admin systems</p>
-                    </div>
-                </article>
-
-                <article class="work" data-reveal>
-                    <div class="work__media">
-                        <img
-                            src="{{ site_image_url('portfolio.work_3') }}"
-                            alt="Workspace representing a company website and brand platform"
-                            class="{{ site_image_has('portfolio.work_3') ? '' : 'is-placeholder' }}"
-                            width="1600"
-                            height="1066"
-                            loading="lazy"
-                        >
-                    </div>
-                    <div class="work__content">
-                        <span class="work__index">04</span>
-                        <h3>Meridian Company Site</h3>
-                        <p>A high-clarity marketing website for a software brand — strong first impression, fast pages, and a structure ready for content growth.</p>
-                        <p class="work__tags">Brand site · Performance · Frontend</p>
-                    </div>
-                </article>
-            </div>
+            @if ($projects->isEmpty() && ! $featured)
+                <p class="blog-empty" data-reveal>No published projects yet. Check back soon.</p>
+            @elseif ($projects->isNotEmpty())
+                <div class="works-list">
+                    @foreach ($projects as $index => $project)
+                        <article class="work" data-reveal>
+                            <div class="work__media">
+                                <img
+                                    src="{{ $project->cover_url }}"
+                                    alt="{{ $project->title }}"
+                                    class="{{ $project->hasCoverImage() ? '' : 'is-placeholder' }}"
+                                    width="1600"
+                                    height="1066"
+                                    loading="lazy"
+                                >
+                            </div>
+                            <div class="work__content">
+                                <span class="work__index">{{ str_pad((string) ($index + ($featured ? 2 : 1)), 2, '0', STR_PAD_LEFT) }}</span>
+                                <h3>{{ $project->title }}</h3>
+                                <p>{{ $project->description }}</p>
+                                @if ($project->tags)
+                                    <p class="work__tags">{{ $project->tags }}</p>
+                                @endif
+                            </div>
+                        </article>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </section>
 

@@ -22,17 +22,16 @@
                 <div class="blog-list">
                     @foreach ($posts as $post)
                         <article class="blog-item" data-reveal>
-                            @if ($post->cover_url)
-                                <a href="{{ route('blog.show', $post) }}" class="blog-item__media">
-                                    <img
-                                        src="{{ $post->cover_url }}"
-                                        alt="{{ $post->title }}"
-                                        width="1600"
-                                        height="1066"
-                                        loading="lazy"
-                                    >
-                                </a>
-                            @endif
+                            <a href="{{ route('blog.show', $post) }}" class="blog-item__media">
+                                <img
+                                    src="{{ $post->cover_url }}"
+                                    alt="{{ $post->title }}"
+                                    class="{{ $post->hasCoverImage() ? '' : 'is-placeholder' }}"
+                                    width="1600"
+                                    height="1066"
+                                    loading="lazy"
+                                >
+                            </a>
                             <div class="blog-item__content">
                                 <time datetime="{{ $post->published_at?->toDateString() }}">
                                     {{ $post->published_at?->format('M j, Y') }}

@@ -2,7 +2,7 @@
 
 @section('title', $post->title . ' | ' . config('app.name'))
 @section('meta_description', $post->excerpt)
-@section('meta_image', $post->cover_url ?: asset('images/logo/hitecqe-mark.svg'))
+@section('meta_image', $post->cover_url)
 
 @section('content')
     <article class="post-page">
@@ -19,20 +19,18 @@
             </div>
         </header>
 
-        @if ($post->cover_url)
-            <div class="container-xl">
-                <div class="post-page__cover" data-reveal>
-                    <img
-                        src="{{ $post->cover_url }}"
-                        alt="{{ $post->title }}"
-                        width="1600"
-                        height="1066"
-                        loading="eager"
-                    >
-                </div>
+        <div class="container-xl">
+            <div class="post-page__cover" data-reveal>
+                <img
+                    src="{{ $post->cover_url }}"
+                    alt="{{ $post->title }}"
+                    class="{{ $post->hasCoverImage() ? '' : 'is-placeholder' }}"
+                    width="1600"
+                    height="1066"
+                    loading="eager"
+                >
             </div>
-        @endif
-
+        </div>
         <section class="section section--post-body">
             <div class="container-xl">
                 <div class="post-page__body" data-reveal>

@@ -19,13 +19,7 @@ class SiteSettingController extends Controller
 
     public function update(UpdateSiteSettingRequest $request): RedirectResponse
     {
-        $data = $request->validated();
-
-        if (empty($data['phone_link']) && ! empty($data['phone'])) {
-            $data['phone_link'] = preg_replace('/[^\d+]/', '', $data['phone']);
-        }
-
-        SiteSetting::current()->update($data);
+        SiteSetting::current()->update($request->validated());
 
         return back()->with('success', 'Site settings saved successfully.');
     }

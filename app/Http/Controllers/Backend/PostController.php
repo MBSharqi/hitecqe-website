@@ -25,7 +25,7 @@ class PostController extends Controller
 
     public function create(): View
     {
-        return view('backend.posts.create');
+        return view('backend.posts.create', ['post' => null]);
     }
 
     public function store(StorePostRequest $request): RedirectResponse
@@ -60,17 +60,23 @@ class PostController extends Controller
             $post->published_at
         );
 
+        $previousCover = null;
+
         if ($request->boolean('remove_cover')) {
-            $this->deleteStoredCover($post);
+            $previousCover = $post->isStoredCover() ? $post->cover_image : null;
             $data['cover_image'] = null;
         }
 
         if ($request->hasFile('cover_image')) {
-            $this->deleteStoredCover($post);
+            $previousCover = $post->isStoredCover() ? $post->cover_image : null;
             $data['cover_image'] = $this->storeCover($request->file('cover_image'));
         }
 
         $post->update($data);
+
+        if ($previousCover) {
+            Storage::disk('public')->delete($previousCover);
+        }
 
         return redirect()
             ->route('admin.posts.index')
@@ -99,7 +105,7 @@ class PostController extends Controller
         }
     }
 
-    private function resolvePublishedAt(string $status, ?string $publishedAt, mixed $existing = null): mixed
+    private function resolvePublishedAt(string $status, ?string $publishedAt, ?Carbon $existing = null): ?Carbon
     {
         if ($status !== 'published') {
             return null;

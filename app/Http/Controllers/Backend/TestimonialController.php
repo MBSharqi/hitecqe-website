@@ -22,7 +22,7 @@ class TestimonialController extends Controller
 
     public function create(): View
     {
-        return view('backend.testimonials.create');
+        return view('backend.testimonials.create', ['testimonial' => null]);
     }
 
     public function store(StoreTestimonialRequest $request): RedirectResponse

@@ -66,7 +66,7 @@ class Post extends Model
 
     public function hasCoverImage(): bool
     {
-        if (! is_string($this->cover_image) || $this->cover_image === '') {
+        if (! filled($this->cover_image)) {
             return false;
         }
 
@@ -79,7 +79,7 @@ class Post extends Model
 
     public function isStoredCover(): bool
     {
-        return is_string($this->cover_image) && str_starts_with($this->cover_image, 'posts/');
+        return filled($this->cover_image) && str_starts_with($this->cover_image, 'posts/');
     }
 
     public static function makeSlug(string $title, ?int $ignoreId = null): string

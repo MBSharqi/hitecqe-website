@@ -67,6 +67,11 @@ class ContentCmsTest extends TestCase
             ])
             ->assertRedirect();
 
+        $this->assertDatabaseHas('page_contents', [
+            'page' => 'home',
+            'section' => 'hero',
+        ]);
+
         $this->get('/')
             ->assertOk()
             ->assertSee('Custom hero title')

@@ -1,11 +1,11 @@
 @extends('layouts.backend')
 
-@section('title', 'Page images')
+@section('title', 'Site images')
 @section('eyebrow', 'Media')
-@section('heading', 'Page images')
+@section('heading', 'Site images')
 
 @section('content')
-    <p class="admin-help admin-help--block">Upload or replace photos for each page. If a slot is empty, the public site shows a “No image” placeholder. Blog covers are managed under Posts.</p>
+    <p class="admin-help admin-help--block">Upload or replace brand assets and page photos. Brand logo and favicon fall back to the default mark when empty. Empty page photo slots show a “No image” placeholder. Blog covers are managed under Posts.</p>
 
     @foreach ($pages as $page)
         <section class="admin-panel image-page">
@@ -17,14 +17,16 @@
                 @foreach ($page['slots'] as $slot => $meta)
                     @php
                         $record = $images->get($slot);
-                        $hasImage = $record && $record->path;
+                        $hasImage = filled($record?->path);
+                        $preview = site_image_url($slot);
+                        $accept = $meta['accept'] ?? 'image/jpeg,image/png,image/webp';
                     @endphp
                     <article class="image-slot">
                         <div class="image-slot__preview">
                             <img
-                                src="{{ $hasImage ? $record->url() : asset(config('site_images.placeholder')) }}"
+                                src="{{ $preview }}"
                                 alt="{{ $meta['label'] }}"
-                                class="{{ $hasImage ? '' : 'is-placeholder' }}"
+                                class="{{ $hasImage || isset(config('site_images.defaults')[$slot]) ? '' : 'is-placeholder' }}"
                             >
                         </div>
                         <div class="image-slot__body">
@@ -34,7 +36,7 @@
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="_slot" value="{{ $slot }}">
-                                <input type="file" name="image" accept="image/jpeg,image/png,image/webp" required>
+                                <input type="file" name="image" accept="{{ $accept }}" required>
                                 @error('image')
                                     @if (old('_slot') === $slot)
                                         <p class="admin-error">{{ $message }}</p>
@@ -43,7 +45,7 @@
                                 <button type="submit" class="admin-btn">{{ $hasImage ? 'Replace' : 'Upload' }}</button>
                             </form>
                             @if ($hasImage)
-                                <form method="POST" action="{{ route('admin.images.destroy', $slot) }}" onsubmit="return confirm('Remove this image? The placeholder will show on the site.')">
+                                <form method="POST" action="{{ route('admin.images.destroy', $slot) }}" onsubmit="return confirm('Delete this image?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="admin-btn admin-btn--danger">Delete</button>

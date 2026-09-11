@@ -5,11 +5,11 @@
 
 @section('content')
     @php
-        $hero = page_content('about', 'hero');
-        $story = page_content('about', 'story');
-        $beliefs = page_content('about', 'beliefs');
-        $focus = page_content('about', 'focus');
-        $cta = page_content('about', 'cta');
+        $hero = $content['hero'] ?? [];
+        $story = $content['story'] ?? [];
+        $beliefs = $content['beliefs'] ?? [];
+        $focus = $content['focus'] ?? [];
+        $cta = $content['cta'] ?? [];
     @endphp
 
     <section class="page-hero">

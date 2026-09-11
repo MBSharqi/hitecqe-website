@@ -9,13 +9,10 @@
         $hero = old('sections.hero', $content['hero'] ?? []);
         $stats = old('sections.stats.items', $content['stats'] ?? []);
         $advantages = old('sections.advantages', $content['advantages'] ?? []);
-        $slides = $hero['slides'] ?? [];
-        $trust = $hero['trust'] ?? [];
-        $cards = $advantages['cards'] ?? [];
-        while (count($slides) < 3) { $slides[] = ['title' => '', 'accent' => '', 'lead' => '']; }
-        while (count($trust) < 3) { $trust[] = ''; }
-        while (count($stats) < 4) { $stats[] = ['value' => 0, 'suffix' => '', 'label' => '']; }
-        while (count($cards) < 6) { $cards[] = ['title' => '', 'body' => '']; }
+        $slides = \App\Models\PageContent::ensureCount($hero['slides'] ?? [], 3, ['title' => '', 'accent' => '', 'lead' => '']);
+        $trust = \App\Models\PageContent::ensureCount($hero['trust'] ?? [], 3, '');
+        $stats = \App\Models\PageContent::ensureCount($stats, 4, ['value' => 0, 'suffix' => '', 'label' => '']);
+        $cards = \App\Models\PageContent::ensureCount($advantages['cards'] ?? [], 6, ['title' => '', 'body' => '']);
     @endphp
 
     <div class="admin-actions">

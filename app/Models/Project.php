@@ -61,7 +61,7 @@ class Project extends Model
 
     public function hasCoverImage(): bool
     {
-        if (! is_string($this->cover_image) || $this->cover_image === '') {
+        if (! filled($this->cover_image)) {
             return false;
         }
 
@@ -74,7 +74,15 @@ class Project extends Model
 
     public function isStoredCover(): bool
     {
-        return is_string($this->cover_image) && str_starts_with($this->cover_image, 'projects/');
+        return filled($this->cover_image) && str_starts_with($this->cover_image, 'projects/');
+    }
+
+    public static function clearFeatured(?int $exceptId = null): void
+    {
+        static::query()
+            ->when($exceptId, fn (Builder $query) => $query->where('id', '!=', $exceptId))
+            ->where('is_featured', true)
+            ->update(['is_featured' => false]);
     }
 
     public static function makeSlug(string $title, ?int $ignoreId = null): string

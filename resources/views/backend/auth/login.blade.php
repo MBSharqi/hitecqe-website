@@ -13,7 +13,7 @@
     <main class="admin-auth">
         <div class="admin-auth__card">
             <div class="admin-auth__brand">
-                <img src="{{ asset('images/logo/hitecqe-mark.svg') }}" alt="" width="42" height="42">
+                <img src="{{ brand_logo_url() }}" alt="" width="42" height="42">
                 <div>
                     <strong>{{ config('app.name') }}</strong>
                     <p>Admin access</p>

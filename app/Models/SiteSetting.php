@@ -29,10 +29,12 @@ class SiteSetting extends Model
     public function resolved(): array
     {
         $defaults = config('content.settings', []);
+        $email = $this->email ?: ($defaults['email'] ?? '');
 
         return [
-            'email' => $this->email ?: ($defaults['email'] ?? ''),
-            'notification_email' => $this->notification_email ?: ($defaults['notification_email'] ?? ($this->email ?: ($defaults['email'] ?? ''))),
+            'email' => $email,
+            'notification_email' => $this->notification_email
+                ?: ($defaults['notification_email'] ?? $email),
             'phone' => $this->phone ?: ($defaults['phone'] ?? ''),
             'phone_link' => $this->phone_link ?: ($defaults['phone_link'] ?? ''),
             'address' => $this->address ?: ($defaults['address'] ?? ''),

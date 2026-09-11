@@ -1,7 +1,3 @@
-@php
-    $testimonial = $testimonial ?? null;
-@endphp
-
 <div class="admin-form-grid">
     <div class="admin-field admin-field--full">
         <label for="quote">Quote</label>

@@ -5,12 +5,12 @@
 
 @section('content')
     @php
-        $hero = page_content('services', 'hero');
-        $engineering = page_content('services', 'engineering');
-        $design = page_content('services', 'design');
-        $offerings = page_content('services', 'offerings');
-        $process = page_content('services', 'process');
-        $cta = page_content('services', 'cta');
+        $hero = $content['hero'] ?? [];
+        $engineering = $content['engineering'] ?? [];
+        $design = $content['design'] ?? [];
+        $offerings = $content['offerings'] ?? [];
+        $process = $content['process'] ?? [];
+        $cta = $content['cta'] ?? [];
     @endphp
 
     <section class="page-hero">

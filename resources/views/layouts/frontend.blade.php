@@ -7,14 +7,13 @@
     <meta name="description" content="@yield('meta_description', config('app.name') . ' — ' . config('brand.tagline') . '. Custom Laravel software, dynamic websites, and product experiences for startups and growing companies.')">
     <meta name="robots" content="@yield('meta_robots', 'index, follow')">
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
-    <link rel="icon" href="{{ asset('images/logo/hitecqe-mark.svg') }}" type="image/svg+xml">
+    <link rel="icon" href="{{ brand_favicon_url() }}" sizes="any">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ config('app.name') }}">
     <meta property="og:title" content="@yield('title', config('app.name'))">
     <meta property="og:description" content="@yield('meta_description', config('app.name') . ' — ' . config('brand.tagline') . '. Custom Laravel software, dynamic websites, and product experiences for startups and growing companies.')">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="@yield('meta_image', asset('images/logo/hitecqe-mark.svg'))">
+    <meta property="og:image" content="@yield('meta_image', brand_logo_url())">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('title', config('app.name'))">
     <meta name="twitter:description" content="@yield('meta_description', config('app.name') . ' — ' . config('brand.tagline') . '. Custom Laravel software, dynamic websites, and product experiences for startups and growing companies.')">
@@ -29,7 +28,7 @@
         <header class="site-header" data-site-header>
             <div class="container-xl site-header__inner">
                 <a href="{{ route('home') }}" class="brand">
-                    <img src="{{ asset('images/logo/hitecqe-mark.svg') }}" alt="" class="brand__mark" width="36" height="36">
+                    <img src="{{ brand_logo_url() }}" alt="" class="brand__mark" width="36" height="36">
                     <span class="brand__name">{{ config('app.name') }}</span>
                 </a>
                 <button class="nav-toggle d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#siteMenu" aria-controls="siteMenu" aria-label="Open menu">
@@ -72,7 +71,7 @@
             <div class="container-xl">
                 <div class="site-footer__grid">
                     <div class="site-footer__brand">
-                        <img src="{{ asset('images/logo/hitecqe-mark.svg') }}" alt="" width="40" height="40">
+                        <img src="{{ brand_logo_url() }}" alt="" width="40" height="40">
                         <div>
                             <strong>{{ config('app.name') }}</strong>
                             <p class="site-footer__tagline">{{ config('brand.tagline') }}</p>

@@ -12,18 +12,14 @@
         $offerings = old('sections.offerings', $content['offerings'] ?? []);
         $process = old('sections.process', $content['process'] ?? []);
         $cta = old('sections.cta', $content['cta'] ?? []);
-        $engPoints = $engineering['points'] ?? [];
-        $designPoints = $design['points'] ?? [];
-        $offeringItems = $offerings['items'] ?? [];
-        $steps = $process['steps'] ?? [];
-        while (count($engPoints) < 4) { $engPoints[] = ''; }
-        while (count($designPoints) < 4) { $designPoints[] = ''; }
-        while (count($offeringItems) < 3) { $offeringItems[] = ['title' => '', 'body' => '']; }
-        while (count($steps) < 4) { $steps[] = ['title' => '', 'body' => '']; }
+        $engPoints = \App\Models\PageContent::ensureCount($engineering['points'] ?? [], 4, '');
+        $designPoints = \App\Models\PageContent::ensureCount($design['points'] ?? [], 4, '');
+        $offeringItems = \App\Models\PageContent::ensureCount($offerings['items'] ?? [], 3, ['title' => '', 'body' => '']);
+        $steps = \App\Models\PageContent::ensureCount($process['steps'] ?? [], 4, ['title' => '', 'body' => '']);
     @endphp
 
     <div class="admin-actions">
-        <p class="admin-help">Edit Services page text. Images stay under Page images.</p>
+        <p class="admin-help">Edit Services page text. Images stay under Site images.</p>
     </div>
 
     <section class="admin-panel">

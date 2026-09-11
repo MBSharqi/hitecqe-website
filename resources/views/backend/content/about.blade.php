@@ -11,16 +11,13 @@
         $beliefs = old('sections.beliefs', $content['beliefs'] ?? []);
         $focus = old('sections.focus', $content['focus'] ?? []);
         $cta = old('sections.cta', $content['cta'] ?? []);
-        $paragraphs = $story['paragraphs'] ?? ['', ''];
-        $beliefItems = $beliefs['items'] ?? [];
-        $points = $focus['points'] ?? ['', '', ''];
-        while (count($paragraphs) < 2) { $paragraphs[] = ''; }
-        while (count($beliefItems) < 3) { $beliefItems[] = ['title' => '', 'body' => '']; }
-        while (count($points) < 3) { $points[] = ''; }
+        $paragraphs = \App\Models\PageContent::ensureCount($story['paragraphs'] ?? [], 2, '');
+        $beliefItems = \App\Models\PageContent::ensureCount($beliefs['items'] ?? [], 3, ['title' => '', 'body' => '']);
+        $points = \App\Models\PageContent::ensureCount($focus['points'] ?? [], 3, '');
     @endphp
 
     <div class="admin-actions">
-        <p class="admin-help">Edit About page text. Images stay under Page images.</p>
+        <p class="admin-help">Edit About page text. Images stay under Site images.</p>
     </div>
 
     <section class="admin-panel">

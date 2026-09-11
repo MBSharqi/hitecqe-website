@@ -24,7 +24,7 @@ class ProjectController extends Controller
 
     public function create(): View
     {
-        return view('backend.projects.create');
+        return view('backend.projects.create', ['project' => null]);
     }
 
     public function store(StoreProjectRequest $request): RedirectResponse
@@ -38,7 +38,7 @@ class ProjectController extends Controller
         }
 
         if (! empty($data['is_featured'])) {
-            Project::query()->where('is_featured', true)->update(['is_featured' => false]);
+            Project::clearFeatured();
         }
 
         Project::create($data);
@@ -59,24 +59,27 @@ class ProjectController extends Controller
         $data['slug'] = Project::makeSlug($data['title'], $project->id);
         $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
 
+        $previousCover = null;
+
         if ($request->boolean('remove_cover')) {
-            $this->deleteStoredCover($project);
+            $previousCover = $project->isStoredCover() ? $project->cover_image : null;
             $data['cover_image'] = null;
         }
 
         if ($request->hasFile('cover_image')) {
-            $this->deleteStoredCover($project);
+            $previousCover = $project->isStoredCover() ? $project->cover_image : null;
             $data['cover_image'] = $this->storeCover($request->file('cover_image'));
         }
 
         if (! empty($data['is_featured'])) {
-            Project::query()
-                ->where('id', '!=', $project->id)
-                ->where('is_featured', true)
-                ->update(['is_featured' => false]);
+            Project::clearFeatured($project->id);
         }
 
         $project->update($data);
+
+        if ($previousCover) {
+            Storage::disk('public')->delete($previousCover);
+        }
 
         return redirect()
             ->route('admin.projects.index')

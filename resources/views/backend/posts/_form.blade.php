@@ -1,7 +1,3 @@
-@php
-    $post = $post ?? null;
-@endphp
-
 <div class="admin-form-grid">
     <div class="admin-field admin-field--full">
         <label for="title">Title</label>

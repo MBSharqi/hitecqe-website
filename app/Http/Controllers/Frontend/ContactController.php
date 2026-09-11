@@ -37,7 +37,7 @@ class ContactController extends Controller
     {
         $recipient = setting('notification_email') ?: setting('email');
 
-        if (! is_string($recipient) || $recipient === '') {
+        if (blank($recipient)) {
             return;
         }
 

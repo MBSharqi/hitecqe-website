@@ -18,6 +18,12 @@ class UpdateSiteSettingRequest extends FormRequest
                 $this->merge([$field => null]);
             }
         }
+
+        if (blank($this->input('phone_link')) && filled($this->input('phone'))) {
+            $this->merge([
+                'phone_link' => preg_replace('/[^\d+]/', '', (string) $this->input('phone')),
+            ]);
+        }
     }
 
     public function rules(): array

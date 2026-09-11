@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\PageController;
+use App\Models\PageContent;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -50,8 +51,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/settings', [SiteSettingController::class, 'edit'])->name('settings.edit');
         Route::put('/settings', [SiteSettingController::class, 'update'])->name('settings.update');
 
-        Route::get('/content/{page}', [PageContentController::class, 'edit'])->where('page', 'home|about|services')->name('content.edit');
-        Route::put('/content/{page}', [PageContentController::class, 'update'])->where('page', 'home|about|services')->name('content.update');
+        Route::get('/content/{page}', [PageContentController::class, 'edit'])->whereIn('page', PageContent::pages())->name('content.edit');
+        Route::put('/content/{page}', [PageContentController::class, 'update'])->whereIn('page', PageContent::pages())->name('content.update');
 
         Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
         Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');

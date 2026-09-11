@@ -13,9 +13,9 @@
 
 @section('content')
     @php
-        $homeHero = page_content('home', 'hero');
-        $homeStats = page_content('home', 'stats');
-        $homeAdvantages = page_content('home', 'advantages');
+        $homeHero = $content['hero'] ?? [];
+        $homeStats = $content['stats'] ?? [];
+        $homeAdvantages = $content['advantages'] ?? [];
     @endphp
     <div class="home-page">
         <section class="hero hero--corporate" aria-label="Introduction" data-hero-slider>
@@ -25,7 +25,7 @@
                 <span class="hero__grid-lines"></span>
             </div>
             <div class="container-xl hero__grid">
-                <div class="hero__copy">
+                <div class="hero_copy">
                     <p class="hero__eyebrow" data-hero-item>
                         <span class="hero__eyebrow-dot"></span>
                         {{ config('app.name') }}
@@ -115,7 +115,7 @@
                         <span class="marquee__sep">·</span>
                         <span>Clear Delivery</span>
                         <span class="marquee__sep">·</span>
-                        <span>{{ setting('address') ?: 'Colombo, Sri Lanka' }}</span>
+                        <span>{{ setting('address') }}</span>
                         <span class="marquee__sep">·</span>
                     </div>
                 @endfor

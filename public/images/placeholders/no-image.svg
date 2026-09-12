@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="No image">
+  <rect width="1200" height="800" fill="#E8EFED"/>
+  <rect x="40" y="40" width="1120" height="720" rx="28" fill="#F8FBFA" stroke="#D2E0DC" stroke-width="2"/>
+  <circle cx="600" cy="340" r="72" fill="#D2E0DC"/>
+  <path d="M560 340h80M600 300v80" stroke="#0D6F69" stroke-width="10" stroke-linecap="round"/>
+  <text x="600" y="470" text-anchor="middle" fill="#334249" font-family="Segoe UI, Helvetica Neue, sans-serif" font-size="36" font-weight="700">No image</text>
+  <text x="600" y="520" text-anchor="middle" fill="#7F9794" font-family="Segoe UI, Helvetica Neue, sans-serif" font-size="22">Upload one from Admin ’ Page images</text>
+</svg>

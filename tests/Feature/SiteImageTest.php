@@ -102,6 +102,8 @@ class SiteImageTest extends TestCase
             ->assertSee('Brand')
             ->assertSee('Logo')
             ->assertSee('Favicon')
+            ->assertSee('Theme')
+            ->assertSee('Dark net background')
             ->assertDontSee('Featured project');
     }
 }

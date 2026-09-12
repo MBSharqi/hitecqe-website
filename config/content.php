@@ -9,6 +9,11 @@ return [
         'address' => 'Colombo, Sri Lanka',
         'hours' => 'Mon–Fri, 10:00–18:00 SLST',
         'response_note' => 'Usually within 1–2 business days',
+        'facebook' => '',
+        'twitter' => '',
+        'github' => '',
+        'linkedin' => '',
+        'instagram' => '',
     ],
 
     'home' => [

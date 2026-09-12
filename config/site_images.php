@@ -24,6 +24,17 @@ return [
                 ],
             ],
         ],
+        'theme' => [
+            'label' => 'Theme',
+            'slots' => [
+                'theme.dark_net' => [
+                    'label' => 'Dark net background',
+                    'hint' => 'Background image for the dark footer net theme. Use a dark abstract / net pattern. JPG, PNG, or WebP.',
+                    'accept' => 'image/jpeg,image/png,image/webp',
+                    'rules' => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
+                ],
+            ],
+        ],
         'home' => [
             'label' => 'Home',
             'slots' => [

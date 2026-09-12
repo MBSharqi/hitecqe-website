@@ -1,8 +1,6 @@
-import './bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const header = document.querySelector('[data-site-header]');
-const heroMedia = document.querySelector('[data-hero-media] img');
 
 const onScroll = () => {
     if (!header) {
@@ -14,17 +12,6 @@ const onScroll = () => {
 
 onScroll();
 window.addEventListener('scroll', onScroll, { passive: true });
-
-if (heroMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    window.addEventListener(
-        'scroll',
-        () => {
-            const offset = Math.min(window.scrollY * 0.18, 120);
-            heroMedia.style.translate = `0 ${offset}px`;
-        },
-        { passive: true }
-    );
-}
 
 const revealNodes = document.querySelectorAll('[data-reveal]');
 

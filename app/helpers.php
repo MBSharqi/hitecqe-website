@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\PageContent;
 use App\Models\SiteImage;
 use App\Models\SiteSetting;
 
@@ -37,13 +36,4 @@ function site_settings(): array
 function setting(string $key, ?string $default = null): ?string
 {
     return site_settings()[$key] ?? $default;
-}
-
-function page_content(string $page, ?string $section = null): array
-{
-    if ($section === null) {
-        return PageContent::page($page);
-    }
-
-    return PageContent::getSection($page, $section);
 }

@@ -28,26 +28,6 @@ class PageContent extends Model
         ));
     }
 
-    public static function getSection(string $page, string $section): array
-    {
-        $defaults = config("content.{$page}.{$section}", []);
-
-        if (! is_array($defaults)) {
-            $defaults = [];
-        }
-
-        $record = static::query()
-            ->where('page', $page)
-            ->where('section', $section)
-            ->first();
-
-        if (! $record) {
-            return $defaults;
-        }
-
-        return static::mergeDefaults($defaults, $record->data ?? []);
-    }
-
     public static function putSection(string $page, string $section, array $data): self
     {
         return static::query()->updateOrCreate(

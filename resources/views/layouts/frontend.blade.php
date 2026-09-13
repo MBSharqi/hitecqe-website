@@ -23,7 +23,7 @@
     @vite(['resources/css/frontend.css', 'resources/js/frontend.js'])
     @stack('styles')
 </head>
-<body class="{{ request()->routeIs('home') ? 'is-home' : 'is-inner' }}">
+<body class="{{ request()->routeIs('home') ? 'is-home' : 'is-inner' }}{{ page_bg_has() ? ' has-page-bg' : '' }}">
     <div class="site-wrapper">
         <header class="site-header" data-site-header>
             <a href="{{ route('home') }}" class="brand">

@@ -11,9 +11,15 @@
         $offerings = $content['offerings'] ?? [];
         $process = $content['process'] ?? [];
         $cta = $content['cta'] ?? [];
+        $pageBg = page_bg_url('services');
     @endphp
 
-    <section class="page-hero">
+    <section
+        class="page-hero{{ $pageBg ? ' page-hero--cover' : '' }}"
+        @if ($pageBg)
+            style="--page-hero-bg: url('{{ $pageBg }}')"
+        @endif
+    >
         <div class="container-xl page-hero__inner">
             <p class="eyebrow" data-reveal>{{ $hero['eyebrow'] ?? 'Services' }}</p>
             <h1 class="page-hero__title" data-reveal>{{ $hero['title'] ?? '' }}</h1>

@@ -4,7 +4,13 @@
 @section('meta_description', 'See selected Hitecqe Solutions work — product platforms, dashboards, and company websites built for real use.')
 
 @section('content')
-    <section class="page-hero">
+    @php $pageBg = page_bg_url('portfolio'); @endphp
+    <section
+        class="page-hero{{ $pageBg ? ' page-hero--cover' : '' }}"
+        @if ($pageBg)
+            style="--page-hero-bg: url('{{ $pageBg }}')"
+        @endif
+    >
         <div class="container-xl page-hero__inner">
             <p class="eyebrow" data-reveal>Portfolio</p>
             <h1 class="page-hero__title" data-reveal>Selected work built for real use.</h1>

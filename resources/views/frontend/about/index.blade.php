@@ -12,7 +12,15 @@
         $cta = $content['cta'] ?? [];
     @endphp
 
-    <section class="page-hero">
+    @php
+        $pageBg = page_bg_url('about');
+    @endphp
+    <section
+        class="page-hero{{ $pageBg ? ' page-hero--cover' : '' }}"
+        @if ($pageBg)
+            style="--page-hero-bg: url('{{ $pageBg }}')"
+        @endif
+    >
         <div class="container-xl page-hero__inner">
             <p class="eyebrow" data-reveal>{{ $hero['eyebrow'] ?? 'About' }}</p>
             <h1 class="page-hero__title" data-reveal>{{ $hero['title'] ?? '' }}</h1>

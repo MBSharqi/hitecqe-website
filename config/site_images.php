@@ -33,14 +33,26 @@ return [
                     'accept' => 'image/jpeg,image/png,image/webp',
                     'rules' => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
                 ],
+                'theme.page_bg' => [
+                    'label' => 'Default page background',
+                    'hint' => 'Fallback hero background for any page without its own image. Dark tech / net style works best. JPG, PNG, or WebP.',
+                    'accept' => 'image/jpeg,image/png,image/webp',
+                    'rules' => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+                ],
             ],
         ],
         'home' => [
             'label' => 'Home',
             'slots' => [
+                'home.bg' => [
+                    'label' => 'Page background',
+                    'hint' => 'Full-bleed dark hero background (tech / net style). Overlay keeps text readable.',
+                    'accept' => 'image/jpeg,image/png,image/webp',
+                    'rules' => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+                ],
                 'home.hero' => [
-                    'label' => 'Hero background',
-                    'hint' => 'Full-width photo behind the homepage headline.',
+                    'label' => 'Hero visual',
+                    'hint' => 'Product / workspace photo inside the hero frame.',
                 ],
                 'home.craft' => [
                     'label' => 'Approach photo',
@@ -55,6 +67,12 @@ return [
         'about' => [
             'label' => 'About',
             'slots' => [
+                'about.bg' => [
+                    'label' => 'Page background',
+                    'hint' => 'Dark full-bleed background behind the About hero.',
+                    'accept' => 'image/jpeg,image/png,image/webp',
+                    'rules' => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+                ],
                 'about.studio' => [
                     'label' => 'Studio photo',
                     'hint' => 'Team or studio image in Our story.',
@@ -68,6 +86,12 @@ return [
         'services' => [
             'label' => 'Services',
             'slots' => [
+                'services.bg' => [
+                    'label' => 'Page background',
+                    'hint' => 'Dark full-bleed background behind the Services hero.',
+                    'accept' => 'image/jpeg,image/png,image/webp',
+                    'rules' => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+                ],
                 'services.engineering' => [
                     'label' => 'Engineering',
                     'hint' => 'Image for web application development.',
@@ -75,6 +99,39 @@ return [
                 'services.design' => [
                     'label' => 'Design',
                     'hint' => 'Image for product and UI design.',
+                ],
+            ],
+        ],
+        'portfolio' => [
+            'label' => 'Portfolio',
+            'slots' => [
+                'portfolio.bg' => [
+                    'label' => 'Page background',
+                    'hint' => 'Dark full-bleed background behind the Portfolio hero.',
+                    'accept' => 'image/jpeg,image/png,image/webp',
+                    'rules' => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+                ],
+            ],
+        ],
+        'blog' => [
+            'label' => 'Blog',
+            'slots' => [
+                'blog.bg' => [
+                    'label' => 'Page background',
+                    'hint' => 'Dark full-bleed background behind the Blog hero.',
+                    'accept' => 'image/jpeg,image/png,image/webp',
+                    'rules' => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+                ],
+            ],
+        ],
+        'contact' => [
+            'label' => 'Contact',
+            'slots' => [
+                'contact.bg' => [
+                    'label' => 'Page background',
+                    'hint' => 'Dark full-bleed background behind the Contact hero.',
+                    'accept' => 'image/jpeg,image/png,image/webp',
+                    'rules' => ['required', 'file', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
                 ],
             ],
         ],

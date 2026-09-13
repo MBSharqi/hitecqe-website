@@ -16,9 +16,17 @@
         $homeHero = $content['hero'] ?? [];
         $homeStats = $content['stats'] ?? [];
         $homeAdvantages = $content['advantages'] ?? [];
+        $homeBg = page_bg_url('home');
     @endphp
     <div class="home-page">
-        <section class="hero hero--corporate" aria-label="Introduction" data-hero-slider>
+        <section
+            class="hero hero--corporate{{ $homeBg ? ' hero--cover' : '' }}"
+            aria-label="Introduction"
+            data-hero-slider
+            @if ($homeBg)
+                style="--page-hero-bg: url('{{ $homeBg }}')"
+            @endif
+        >
             <div class="hero__backdrop" aria-hidden="true">
                 <span class="hero__orb hero__orb--one"></span>
                 <span class="hero__orb hero__orb--two"></span>

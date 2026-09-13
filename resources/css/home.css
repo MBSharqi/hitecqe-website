@@ -14,6 +14,59 @@ body.is-home .hero--corporate {
     background: linear-gradient(165deg, #ffffff 0%, #f8fafc 52%, #eef6f5 100%);
 }
 
+body.is-home .hero--corporate.hero--cover {
+    background: #000;
+    padding-top: calc(var(--header-h) + clamp(2.5rem, 6vw, 4rem));
+}
+
+body.is-home .hero--cover .hero__backdrop {
+    display: none;
+}
+
+body.is-home .hero--cover .hero__eyebrow {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.22);
+    color: #fff;
+    backdrop-filter: blur(10px);
+    box-shadow: none;
+}
+
+body.is-home .hero--cover .hero__tagline,
+body.is-home .hero--cover .hero__lead,
+body.is-home .hero--cover .hero__trust {
+    color: #d4d4d8;
+}
+
+body.is-home .hero--cover .hero__title {
+    color: #fafafa;
+}
+
+body.is-home .hero--cover .hero__accent {
+    background: linear-gradient(120deg, #5eead4 0%, #93c5fd 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+body.is-home .hero--cover .btn-quiet {
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+body.is-home .hero--cover .btn-quiet:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+body.is-home .hero--cover .hero__dot {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+body.is-home .hero--cover .hero__dot.is-active {
+    background: #fff;
+}
+
 body.is-home .hero__backdrop {
     position: absolute;
     inset: 0;

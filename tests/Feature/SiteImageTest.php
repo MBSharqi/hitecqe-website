@@ -104,6 +104,8 @@ class SiteImageTest extends TestCase
             ->assertSee('Favicon')
             ->assertSee('Theme')
             ->assertSee('Dark net background')
+            ->assertSee('Default page background')
+            ->assertSee('Page background')
             ->assertDontSee('Featured project');
     }
 }

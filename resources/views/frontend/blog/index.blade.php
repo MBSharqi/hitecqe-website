@@ -4,7 +4,13 @@
 @section('meta_description', 'Insights from Hitecqe on product design, Laravel engineering, and shipping software with clarity.')
 
 @section('content')
-    <section class="page-hero">
+    @php $pageBg = page_bg_url('blog'); @endphp
+    <section
+        class="page-hero{{ $pageBg ? ' page-hero--cover' : '' }}"
+        @if ($pageBg)
+            style="--page-hero-bg: url('{{ $pageBg }}')"
+        @endif
+    >
         <div class="container-xl page-hero__inner">
             <p class="eyebrow" data-reveal>Blog</p>
             <h1 class="page-hero__title" data-reveal>Notes on product, craft, and shipping.</h1>

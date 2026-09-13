@@ -4,7 +4,13 @@
 @section('meta_description', 'Contact Hitecqe to discuss your product idea, Laravel app, website rebuild, or upcoming launch.')
 
 @section('content')
-    <section class="page-hero">
+    @php $pageBg = page_bg_url('contact'); @endphp
+    <section
+        class="page-hero{{ $pageBg ? ' page-hero--cover' : '' }}"
+        @if ($pageBg)
+            style="--page-hero-bg: url('{{ $pageBg }}')"
+        @endif
+    >
         <div class="container-xl page-hero__inner">
             <p class="eyebrow" data-reveal>Contact</p>
             <h1 class="page-hero__title" data-reveal>Let’s talk about what you want to build.</h1>

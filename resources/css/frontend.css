@@ -1153,6 +1153,108 @@ body.nav-open {
     border-bottom: 1px solid var(--line);
 }
 
+.page-hero--cover {
+    position: relative;
+    isolation: isolate;
+    min-height: clamp(18rem, 52vh, 28rem);
+    display: flex;
+    align-items: flex-end;
+    color: #f8fafc;
+    background-color: #000;
+    background-image: var(--page-hero-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom: 0;
+}
+
+.page-hero--cover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(0, 0, 0, 0.55);
+    pointer-events: none;
+}
+
+.page-hero--cover .page-hero__inner {
+    position: relative;
+    z-index: 1;
+    padding-bottom: 0.25rem;
+}
+
+.page-hero--cover .eyebrow {
+    color: #a5b4fc;
+}
+
+.page-hero--cover .page-hero__title {
+    color: #fafafa;
+}
+
+.page-hero--cover .page-hero__lead,
+.page-hero--cover .post-page__meta {
+    color: #d4d4d8;
+}
+
+.hero--cover {
+    position: relative;
+    isolation: isolate;
+    min-height: clamp(34rem, 92vh, 56rem);
+    color: #f8fafc;
+    background-color: #000 !important;
+    background-image: var(--page-hero-bg) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border-bottom: 0 !important;
+}
+
+.hero--cover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(0, 0, 0, 0.55);
+    pointer-events: none;
+}
+
+.hero--cover > * {
+    position: relative;
+    z-index: 1;
+}
+
+body.has-page-bg .site-header:not(.is-scrolled) {
+    color: #fff;
+}
+
+body.has-page-bg .site-header:not(.is-scrolled) .brand__name,
+body.has-page-bg .site-header:not(.is-scrolled) .site-nav a {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+body.has-page-bg .site-header:not(.is-scrolled) .site-nav a:hover,
+body.has-page-bg .site-header:not(.is-scrolled) .site-nav a.is-active {
+    color: #fff;
+}
+
+body.has-page-bg .site-header:not(.is-scrolled) .site-nav__cta {
+    background: rgba(248, 250, 252, 0.96);
+    color: #18181b;
+}
+
+body.has-page-bg .site-header:not(.is-scrolled) .site-nav__cta:hover {
+    background: #fff;
+    color: #0f172a;
+}
+
+body.has-page-bg .site-header:not(.is-scrolled) .nav-toggle {
+    color: #fff;
+}
+
+body.has-page-bg .site-header:not(.is-scrolled) .nav-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
 .page-hero__inner {
     max-width: 46rem;
 }

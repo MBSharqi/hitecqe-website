@@ -5,8 +5,14 @@
 @section('meta_image', $post->cover_url)
 
 @section('content')
+    @php $pageBg = page_bg_url('blog'); @endphp
     <article class="post-page">
-        <header class="page-hero page-hero--post">
+        <header
+            class="page-hero page-hero--post{{ $pageBg ? ' page-hero--cover' : '' }}"
+            @if ($pageBg)
+                style="--page-hero-bg: url('{{ $pageBg }}')"
+            @endif
+        >
             <div class="container-xl page-hero__inner">
                 <p class="eyebrow" data-reveal>Article</p>
                 <h1 class="page-hero__title" data-reveal>{{ $post->title }}</h1>
